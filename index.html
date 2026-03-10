@@ -2328,6 +2328,214 @@
     .audit-cards-grid { grid-template-columns: 1fr; }
     .audit-steps-grid { grid-template-columns: 1fr; }
   }
+
+  /* ============================================
+     REPRO INTEL WAITLIST MODAL
+  ============================================ */
+  .ri-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s ease;
+  }
+  .ri-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .ri-card {
+    background: var(--dark);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    max-width: 520px;
+    width: 100%;
+    padding: 44px 40px 36px;
+    position: relative;
+    transform: translateY(16px);
+    transition: transform .35s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .ri-overlay.active .ri-card {
+    transform: translateY(0);
+  }
+  .ri-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,.5);
+    font-size: 24px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background .2s, color .2s;
+    line-height: 1;
+  }
+  .ri-close:hover {
+    background: rgba(255,255,255,.08);
+    color: var(--white);
+  }
+  .ri-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid var(--orange);
+    border-radius: 2px;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+  }
+  .ri-wordmark {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .ri-wordmark-repro { color: var(--white); }
+  .ri-wordmark-intel { color: #E91E8C; }
+  .ri-headline {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .ri-subtext {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: rgba(255,255,255,.55);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .ri-form .form-group { margin-bottom: 18px; }
+  .ri-form .form-group label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 6px;
+  }
+  .ri-form .form-group input,
+  .ri-form .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 4px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .ri-form .form-group input:focus,
+  .ri-form .form-group textarea:focus {
+    border-color: var(--cyan);
+  }
+  .ri-form .form-group input::placeholder,
+  .ri-form .form-group textarea::placeholder {
+    color: rgba(255,255,255,.3);
+  }
+  .ri-form .form-group textarea {
+    min-height: 70px;
+    resize: vertical;
+  }
+  .ri-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .ri-submit {
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 14px 28px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .ri-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(232,82,10,.35);
+  }
+  .ri-submit:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .ri-status {
+    display: none;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+  }
+  .ri-success {
+    text-align: center;
+    padding: 32px 20px;
+  }
+  .ri-success-check {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0,180,216,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+    color: var(--cyan);
+  }
+  .ri-success h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ri-success p {
+    font-size: 14px;
+    color: rgba(255,255,255,.6);
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .ri-card { padding: 32px 24px 28px; }
+    .ri-wordmark { font-size: 28px; }
+    .ri-headline { font-size: 16px; }
+    .ri-form .form-row { grid-template-columns: 1fr; gap: 0; }
+  }
 </style>
 </head>
 <body>
@@ -4690,6 +4898,123 @@ function toggleFaq(item) {
     icon.style.transform = 'rotate(0deg)';
   }
 }
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     REPRO INTEL WAITLIST MODAL
+═══════════════════════════════════════════════════ -->
+<div id="ri-modal" class="ri-overlay" role="dialog" aria-modal="true" aria-label="Repro Intel waitlist signup">
+  <div class="ri-card">
+    <button class="ri-close" id="ri-close" aria-label="Close">&times;</button>
+    <div id="ri-form-view">
+      <div class="ri-badge">Early Access</div>
+      <div class="ri-wordmark">
+        <span class="ri-wordmark-repro">REPRO </span><span class="ri-wordmark-intel">INTEL</span>
+      </div>
+      <p class="ri-headline">Your communities are talking about their reproductive health online right now. You're not in the room.</p>
+      <p class="ri-subtext">Repro Intel changes that. Weekly intelligence from the Reddit conversations your patients and communities are already having — turned into strategy you can act on. Built for the movement, by someone inside it.</p>
+      <form id="ri-form" class="ri-form" action="https://formspree.io/f/mnjgpbvw" method="POST">
+        <input type="hidden" name="_subject" value="Repro Intel Waitlist Signup">
+        <input type="hidden" name="form_type" value="repro-intel-waitlist">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ri-name">Name</label>
+            <input type="text" id="ri-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="ri-email">Email</label>
+            <input type="email" id="ri-email" name="email" placeholder="you@org.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ri-org">Organization + Role</label>
+          <input type="text" id="ri-org" name="organization_role" placeholder="e.g. Planned Parenthood, Director of Communications" required>
+        </div>
+        <div class="form-group">
+          <label for="ri-gap">What's the biggest gap in your current community intelligence?</label>
+          <textarea id="ri-gap" name="intelligence_gap" placeholder="Optional — but it helps us build what you actually need"></textarea>
+        </div>
+        <div id="ri-status" class="ri-status"></div>
+        <button type="submit" class="ri-submit" id="ri-submit">Request Early Access →</button>
+      </form>
+    </div>
+    <div id="ri-success-view" class="ri-success" style="display:none;">
+      <div class="ri-success-check">✓</div>
+      <h3>You're in.</h3>
+      <p>You'll be among the first to know when Repro Intel launches. In the meantime — here's a taste of what's coming.</p>
+      <a href="https://reprointel.com/#preview" target="_blank" class="ri-submit" style="display:inline-block;text-align:center;text-decoration:none;margin-top:16px;">See a Sample Report →</a>
+      <p style="margin-top:20px;"><a href="#" onclick="closeRiModal();showPage('substack');return false;" style="color:var(--cyan);font-size:13px;">Or read The Body Is The Interface →</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---- REPRO INTEL WAITLIST MODAL ----
+(function() {
+  var modal = document.getElementById('ri-modal');
+  var closeBtn = document.getElementById('ri-close');
+  var form = document.getElementById('ri-form');
+  var formView = document.getElementById('ri-form-view');
+  var successView = document.getElementById('ri-success-view');
+
+  function openRiModal() {
+    if (sessionStorage.getItem('reproIntelSeen')) return;
+    sessionStorage.setItem('reproIntelSeen', 'true');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // Focus first input for accessibility
+    setTimeout(function() {
+      var first = document.getElementById('ri-name');
+      if (first) first.focus();
+    }, 400);
+  }
+
+  window.closeRiModal = function() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  // Trigger after 4 second delay
+  setTimeout(openRiModal, 4000);
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeRiModal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeRiModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeRiModal();
+  });
+
+  // Form submission
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var status = document.getElementById('ri-status');
+    var btn = document.getElementById('ri-submit');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        formView.style.display = 'none';
+        successView.style.display = 'block';
+      } else {
+        throw new Error('Submission failed');
+      }
+    }).catch(function() {
+      status.style.display = 'block';
+      status.style.background = 'rgba(232,82,10,.15)';
+      status.style.color = '#E8520A';
+      status.textContent = 'Something went wrong. Please try again or email lyndsay@frameandforge.com.';
+      btn.textContent = 'Request Early Access →';
+      btn.disabled = false;
+    });
+  });
+})();
 </script>
 </body>
 </html>
