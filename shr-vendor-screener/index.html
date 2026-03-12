@@ -1325,7 +1325,7 @@ footer p {
 .pdf-content p { font-size: 11px; margin: 0 0 6px; color: #333; }
 
 /* Page section = exactly one PDF page */
-.pdf-page-section { position: relative; padding: 36px 44px 50px; min-height: 1056px; }
+.pdf-page-section { position: relative; padding: 40px 48px 56px; min-height: 1056px; }
 
 /* ---- Branded header (every page) ---- */
 .pdf-page-hdr {
@@ -1334,7 +1334,7 @@ footer p {
   align-items: center;
   padding-bottom: 10px;
   border-bottom: 3px solid #1A35C4;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .pdf-logo-mark {
   display: flex;
@@ -1343,7 +1343,7 @@ footer p {
 }
 .pdf-logo-accent {
   width: 5px;
-  height: 28px;
+  height: 24px;
   background: #E85820;
   margin-right: 10px;
   border-radius: 1px;
@@ -1351,7 +1351,7 @@ footer p {
 .pdf-logo-text {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 17px;
   color: #1A35C4;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -1368,9 +1368,9 @@ footer p {
 /* ---- Page footer (every page) ---- */
 .pdf-page-ftr {
   position: absolute;
-  bottom: 20px;
-  left: 44px;
-  right: 44px;
+  bottom: 24px;
+  left: 48px;
+  right: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1404,24 +1404,24 @@ footer p {
 .pdf-footer strong { color: #1A35C4; }
 
 /* ---- Cover page elements ---- */
-.pdf-risk-row { display: flex; align-items: center; gap: 14px; margin: 10px 0; }
-.pdf-risk-badge { display: inline-block; padding: 5px 16px; border-radius: 4px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.pdf-risk-row { display: flex; align-items: center; gap: 14px; margin: 12px 0 8px; }
+.pdf-risk-badge { display: inline-block; padding: 5px 18px; border-radius: 4px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 .pdf-risk-badge.HIGH { background: #DC2626; color: white; }
 .pdf-risk-badge.MEDIUM { background: #F59E0B; color: #1a1a1a; }
 .pdf-risk-badge.LOW { background: #10B981; color: white; }
-.pdf-score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: #0D0F3C; }
+.pdf-score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 34px; font-weight: 800; color: #0D0F3C; }
 .pdf-score-label { font-size: 10px; color: #666; }
-.pdf-vendor-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; color: #0D0F3C; margin-bottom: 2px; }
-.pdf-badges { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
-.pdf-badge { font-size: 9px; padding: 2px 8px; border-radius: 20px; font-weight: 600; border: 1px solid; }
+.pdf-vendor-name { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: #0D0F3C; margin-bottom: 4px; }
+.pdf-badges { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0 8px; }
+.pdf-badge { font-size: 9px; padding: 3px 10px; border-radius: 20px; font-weight: 600; border: 1px solid; }
 .pdf-badge-consumer { background: #fef2f2; border-color: #E85820; color: #E85820; }
 .pdf-badge-org { background: #f0fdf4; border-color: #10B981; color: #10B981; }
 .pdf-badge-ai { background: #f0f9ff; border-color: #29ABE2; color: #1a7abc; }
 .pdf-summary { font-size: 11px; color: #333; line-height: 1.5; margin: 6px 0; }
 
 /* ---- Scorecard grid ---- */
-.pdf-scorecard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 8px 0; }
-.pdf-scorecard-card { padding: 6px 8px; border-left: 4px solid; font-size: 10px; background: #fafafa; }
+.pdf-scorecard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; }
+.pdf-scorecard-card { padding: 7px 10px; border-left: 4px solid; font-size: 10px; background: #fafafa; border-radius: 2px; }
 .pdf-scorecard-card.RED { border-color: #DC2626; }
 .pdf-scorecard-card.YELLOW { border-color: #F59E0B; }
 .pdf-scorecard-card.GREEN { border-color: #10B981; }
@@ -1437,46 +1437,46 @@ footer p {
 .pdf-flags li { font-size: 10px; color: #DC2626; margin-bottom: 3px; list-style: disc; margin-left: 16px; }
 
 /* ---- Domain cards (compact) ---- */
-.pdf-domain-card { margin-bottom: 10px; padding: 8px 10px; border: 1px solid #e5e7eb; border-left: 4px solid; border-radius: 3px; background: #fff; }
+.pdf-domain-card { margin-bottom: 12px; padding: 10px 14px; border: 1px solid #e2e5ea; border-left: 4px solid; border-radius: 4px; background: #fff; }
 .pdf-domain-card.RED { border-left-color: #DC2626; }
 .pdf-domain-card.YELLOW { border-left-color: #F59E0B; }
 .pdf-domain-card.GREEN { border-left-color: #10B981; }
-.pdf-domain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.pdf-domain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
 .pdf-domain-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; color: #0D0F3C; }
 .pdf-domain-num { font-size: 9px; color: #888; }
 
 /* ---- Findings (compact) ---- */
-.pdf-finding { margin: 4px 0; padding: 4px 6px; background: #f9fafb; border-radius: 3px; }
+.pdf-finding { margin: 5px 0; padding: 5px 8px; background: #f9fafb; border-radius: 3px; border: 1px solid #f0f1f3; }
 .pdf-finding-title { font-size: 10px; font-weight: 600; color: #0D0F3C; }
 .pdf-finding-excerpt { font-size: 9px; color: #888; font-style: italic; margin: 2px 0; }
-.pdf-finding-explanation { font-size: 9px; color: #444; line-height: 1.4; }
+.pdf-finding-explanation { font-size: 9px; color: #444; line-height: 1.45; }
 .pdf-finding-rec { font-size: 9px; color: #1A35C4; margin-top: 2px; }
-.pdf-severity { display: inline-block; font-size: 8px; font-weight: 700; padding: 1px 5px; border-radius: 2px; color: white; margin-right: 4px; vertical-align: middle; }
+.pdf-severity { display: inline-block; font-size: 8px; font-weight: 700; padding: 1px 6px; border-radius: 2px; color: white; margin-right: 5px; vertical-align: middle; }
 .pdf-severity.CRITICAL { background: #DC2626; }
 .pdf-severity.WARNING { background: #F59E0B; color: #1a1a1a; }
 .pdf-severity.OK { background: #10B981; }
-.pdf-fw-tags { margin-top: 4px; }
-.pdf-fw-tag { display: inline-block; font-size: 8px; background: #f0f4ff; color: #1A35C4; padding: 1px 5px; border-radius: 2px; margin-right: 3px; margin-bottom: 2px; }
+.pdf-fw-tags { margin-top: 5px; }
+.pdf-fw-tag { display: inline-block; font-size: 8px; background: #f0f4ff; color: #1A35C4; padding: 2px 6px; border-radius: 2px; margin-right: 3px; margin-bottom: 2px; }
 
 /* ---- Questions (compact 2-col) ---- */
-.pdf-questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 12px; margin: 6px 0; }
-.pdf-vq-item { display: flex; gap: 5px; align-items: flex-start; font-size: 9px; padding: 2px 0; }
-.pdf-vq-status { display: inline-block; font-size: 7px; font-weight: 700; padding: 1px 4px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+.pdf-questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; margin: 8px 0; }
+.pdf-vq-item { display: flex; gap: 6px; align-items: flex-start; font-size: 9px; padding: 3px 0; }
+.pdf-vq-status { display: inline-block; font-size: 7px; font-weight: 700; padding: 2px 5px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
 .pdf-vq-status.ANSWERED { background: #dcfce7; color: #166534; }
 .pdf-vq-status.PARTIALLY_ANSWERED { background: #fef9c3; color: #854d0e; }
 .pdf-vq-status.UNANSWERED { background: #fee2e2; color: #991b1b; }
 
 /* ---- Recommendations ---- */
-.pdf-rec-item { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
-.pdf-rec-num { width: 20px; height: 20px; border-radius: 50%; background: #1A35C4; color: white; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
-.pdf-rec-text { font-size: 10px; color: #333; }
-.pdf-rec-area { font-size: 9px; color: #1A35C4; font-weight: 600; margin-bottom: 1px; }
+.pdf-rec-item { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+.pdf-rec-num { width: 22px; height: 22px; border-radius: 50%; background: #1A35C4; color: white; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+.pdf-rec-text { font-size: 10px; color: #333; line-height: 1.45; }
+.pdf-rec-area { font-size: 9px; color: #1A35C4; font-weight: 600; margin-bottom: 2px; }
 
 /* ---- CTA page ---- */
 .pdf-cta-page { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .pdf-cta-page .pdf-page-hdr { width: 100%; }
-.pdf-cta-page h2 { text-align: center; border-bottom: none; font-size: 22px; margin-top: 80px; }
-.pdf-cta-page p { font-size: 13px; color: #333; max-width: 480px; margin: 0 auto 14px; line-height: 1.6; }
+.pdf-cta-page h2 { text-align: center; border-bottom: none; font-size: 24px; margin-top: 100px; color: #0D0F3C; }
+.pdf-cta-page p { font-size: 13px; color: #333; max-width: 500px; margin: 0 auto 16px; line-height: 1.65; }
 .pdf-cta-link { font-size: 14px; color: #1A35C4; font-weight: 700; }
 
 /* ---- Disclaimer ---- */
@@ -3031,21 +3031,9 @@ function buildFullReportPDFContent(data) {
     }
   }
 
-  // ===== QUESTIONS + RECOMMENDATIONS PAGE =====
+  // ===== RECOMMENDATIONS + QUESTIONS PAGE =====
   html += '<div class="pdf-page-section">';
   html += pageHdr();
-
-  if (report && report.vendorQuestions && report.vendorQuestions.length > 0) {
-    html += '<h2>15 Accountability Questions</h2>';
-    html += '<div class="pdf-questions-grid">';
-    report.vendorQuestions.forEach(function(q) {
-      html += '<div class="pdf-vq-item">';
-      html += '<span class="pdf-vq-status ' + q.status + '">' + q.status.replace('_', ' ') + '</span>';
-      html += '<div><strong>Q' + q.number + '.</strong> ' + escapeHtml(q.question) + '</div>';
-      html += '</div>';
-    });
-    html += '</div>';
-  }
 
   if (report && report.recommendations && report.recommendations.length > 0) {
     html += '<h2>Recommended Next Steps</h2>';
@@ -3058,6 +3046,18 @@ function buildFullReportPDFContent(data) {
       html += '</div>';
       html += '</div>';
     });
+  }
+
+  if (report && report.vendorQuestions && report.vendorQuestions.length > 0) {
+    html += '<h2>15 Accountability Questions</h2>';
+    html += '<div class="pdf-questions-grid">';
+    report.vendorQuestions.forEach(function(q) {
+      html += '<div class="pdf-vq-item">';
+      html += '<span class="pdf-vq-status ' + q.status + '">' + q.status.replace('_', ' ') + '</span>';
+      html += '<div><strong>Q' + q.number + '.</strong> ' + escapeHtml(q.question) + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
   }
 
   // Disclaimer
