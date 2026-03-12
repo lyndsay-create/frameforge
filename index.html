@@ -170,6 +170,8 @@
   /* NAV DROPDOWN */
   .nav-dropdown {
     position: relative;
+    padding-bottom: 8px;
+    margin-bottom: -8px;
   }
   .nav-dropdown > a {
     cursor: pointer;
@@ -4435,9 +4437,11 @@
     }
   })();
 
-  // Prevent default on all nav clicks
+  // Prevent default on internal nav clicks (skip real external links)
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', e => e.preventDefault());
+    if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
+      a.addEventListener('click', e => e.preventDefault());
+    }
   });
 
   // ---- MOBILE HAMBURGER MENU ----
