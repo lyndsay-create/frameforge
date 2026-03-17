@@ -357,6 +357,37 @@
   }
   .hero h1 .line-yellow { color: var(--yellow); display: block; }
   .hero h1 .line-white  { color: var(--white);  display: block; }
+
+  /* Rotating hero words */
+  .hero-rotate-wrapper {
+    display: inline-block;
+    position: relative;
+    height: .95em;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .hero-rotate-words {
+    display: flex;
+    flex-direction: column;
+    animation: heroRotate 9s ease-in-out infinite;
+  }
+  .hero-rotate-words span {
+    display: block;
+    height: .95em;
+    line-height: .95;
+    white-space: nowrap;
+  }
+  .hero-rotate-words .hw-yellow { color: var(--yellow); }
+  .hero-rotate-words .hw-cyan   { color: var(--cyan); }
+  .hero-rotate-words .hw-pink   { color: var(--pink); }
+
+  @keyframes heroRotate {
+    0%, 22%    { transform: translateY(0); }
+    28%, 55%   { transform: translateY(-33.333%); }
+    61%, 88%   { transform: translateY(-66.666%); }
+    94%, 100%  { transform: translateY(0); }
+  }
+
   .hero-sub {
     font-size: 18px;
     line-height: 1.6;
@@ -933,9 +964,15 @@
   }
   .creds-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 24px;
     margin-top: 48px;
+  }
+  .cred-card-logo {
+    height: 48px;
+    width: auto;
+    margin-bottom: 12px;
+    object-fit: contain;
   }
   .cred-card {
     background: rgba(255,255,255,.07);
@@ -1959,7 +1996,7 @@
     .contact-grid, .cs-featured-inner, .services-grid,
     .footer-grid, .testimonial-inner { grid-template-columns: 1fr; gap: 40px; }
     .services-grid { grid-template-columns: 1.4fr 1fr; }
-    .creds-grid { grid-template-columns: 1.4fr 1fr; }
+    .creds-grid { grid-template-columns: repeat(3, 1fr); }
     .posts-grid { grid-template-columns: 1.4fr 1fr; }
     .cs-grid { grid-template-columns: 1fr; }
     .substack-inner { flex-direction: column; }
@@ -2599,12 +2636,11 @@
       <div class="hero-inner">
           <div class="hero-kicker">For SRH Leaders, Clinicians &amp; Advocates</div>
           <h1>
-            <span class="line-white">Reproductive Health Insider.</span>
+            <span class="line-white"><span class="hero-rotate-wrapper"><span class="hero-rotate-words"><span class="hw-yellow">Reproductive Health</span><span class="hw-cyan">Health Equity</span><span class="hw-pink">Social Justice</span></span></span> Insider.</span>
             <span class="line-white">AI Strategist.</span>
-            <span class="line-yellow">Finally, Both.</span>
           </h1>
           <p class="hero-sub">
-            25 years inside the reproductive health movement. AI strategy built for it. I help <strong>SRH organizations</strong> use AI that protects patient access, fights misinformation, and doesn't compromise the communities they exist to serve.
+            25 years inside the reproductive health movement. AI strategy built for it. I help <strong>mission-driven organizations</strong> use AI that protects patient access, fights misinformation, and doesn't compromise the communities they exist to serve.
           </p>
           <div class="hero-ctas">
             <button class="btn btn-orange" onclick="showPage('contact')">Book a Strategy Session →</button>
@@ -2963,6 +2999,13 @@
       <div class="label sh">Education & Training</div>
       <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(32px,3.5vw,48px);text-transform:uppercase;line-height:1;margin-top:8px">The Credentials<br>Behind the Work.</h2>
       <div class="creds-grid">
+        <div class="cred-card">
+          <div style="background:#fff;border-radius:6px;padding:10px 14px;display:inline-block;margin-bottom:12px;">
+            <img src="images/iwai-logo.webp" alt="Innovating with AI" style="height:40px;width:auto;display:block;">
+          </div>
+          <div class="school">IWAI</div>
+          <div class="degree">Innovating with AI (IWAI) Certified Consultant</div>
+        </div>
         <div class="cred-card">
           <div class="school">MIT</div>
           <div class="degree">Executive Certificate in AI Strategy &amp; Product Innovation</div>
@@ -3451,6 +3494,20 @@
           <p>18-slide leadership framework with 3 original AI governance frameworks.</p>
         </div>
 
+        <div class="tile tile-featured" onclick="showCaseStudy('cs-vendor-screener')">
+          <span class="tile-badge">Featured · Free Tool</span>
+          <h3>Digital Vendor Accountability Tool</h3>
+          <div class="tile-org">Frame + Forge · Free Resource</div>
+          <p>Interactive screening tool that evaluates vendor privacy policies against SRH-specific accountability standards.</p>
+        </div>
+
+        <div class="tile tile-featured" onclick="showCaseStudy('cs-repro-intel')">
+          <span class="tile-badge">Featured · Product</span>
+          <h3>Repro Intel</h3>
+          <div class="tile-org">Frame + Forge · Early Access</div>
+          <p>Weekly AI-powered intelligence reports from Reddit conversations your patients and communities are already having.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -3677,7 +3734,7 @@
         <p>Communications teams, content strategists, and program leads can generate on-demand reports directly from the dashboard to inform content development, messaging strategy, and program design based on what communities are actually asking and feeling — not what organizations assume they need.</p>
 
         <div class="cs-metrics" style="grid-template-columns:repeat(4,1fr);margin-top:24px;">
-          <div class="cs-metric"><div class="m-num">75+</div><div class="m-lbl">Subreddits Monitored</div></div>
+          <div class="cs-metric"><div class="m-num">35+</div><div class="m-lbl">Subreddits Monitored</div></div>
           <div class="cs-metric"><div class="m-num">412</div><div class="m-lbl">Discussions Tracked</div></div>
           <div class="cs-metric"><div class="m-num">24K</div><div class="m-lbl">Total Engagement</div></div>
           <div class="cs-metric"><div class="m-num">47</div><div class="m-lbl">Key Insights Generated</div></div>
@@ -3728,6 +3785,64 @@
           <div class="cs-metric"><div class="m-num">4,128</div><div class="m-lbl">Data Points</div></div>
           <div class="cs-metric"><div class="m-num">95%+</div><div class="m-lbl">Accuracy Rate</div></div>
           <div class="cs-metric"><div class="m-num">60–70%</div><div class="m-lbl">Time Reduction</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card cs-item" id="cs-vendor-screener">
+        <span class="cs-badge" style="background:var(--orange);color:var(--white);">★ Free Tool</span>
+        <h3>Digital Vendor Accountability Tool</h3>
+        <div class="cs-org">Frame + Forge · Free Resource</div>
+        <p>Every SRH organization uses digital vendors — EHRs, telehealth platforms, analytics tools, chatbots. Most evaluate them on features and price. Almost none evaluate them on whether their privacy policies would protect patients in a post-Dobbs legal environment. This tool was built to close that gap.</p>
+        <p>The Digital Vendor Accountability Check is an interactive screening tool that walks organizations through the critical privacy and data governance questions they should be asking before signing — or renewing — any vendor contract. It evaluates vendor privacy policies against SRH-specific accountability standards covering data sharing, law enforcement disclosure, geolocation tracking, reproductive health inference, and more.</p>
+        <p>Built as a free resource for the movement. No login required. No data collected. Just the questions your vendor doesn't want you to ask.</p>
+
+        <div class="cs-metrics" style="grid-template-columns:repeat(4,1fr);margin-top:24px;">
+          <div class="cs-metric"><div class="m-num">10+</div><div class="m-lbl">Screening Questions</div></div>
+          <div class="cs-metric"><div class="m-num">5</div><div class="m-lbl">Risk Categories</div></div>
+          <div class="cs-metric"><div class="m-num">Free</div><div class="m-lbl">No Login Required</div></div>
+          <div class="cs-metric"><div class="m-num">PDF</div><div class="m-lbl">Exportable Report</div></div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="cs-tag">Vendor Accountability</span>
+          <span class="cs-tag">Privacy Policy</span>
+          <span class="cs-tag">Post-Dobbs</span>
+          <span class="cs-tag">Free Tool</span>
+          <span class="cs-tag">Data Governance</span>
+          <span class="cs-tag">SRH Organizations</span>
+        </div>
+
+        <div style="margin-top:24px;">
+          <a href="https://shr-vendor-screener.vercel.app" target="_blank" class="btn btn-orange" style="text-decoration:none;">Try the Tool →</a>
+        </div>
+      </div>
+
+      <div class="cs-card cs-item" id="cs-repro-intel">
+        <span class="cs-badge" style="background:var(--pink);color:var(--white);">★ Product · Early Access</span>
+        <h3>Repro Intel</h3>
+        <div class="cs-org">Frame + Forge · Early Access</div>
+        <p>Your communities are talking about their reproductive health online right now. They're asking questions on Reddit about birth control side effects, sharing abortion access experiences, debating clinic recommendations, and spreading misinformation — all in real time, all outside your view. Repro Intel was built to put you back in the room.</p>
+        <p>Repro Intel is an AI-powered intelligence product that monitors reproductive health conversations across Reddit, transforms them into strategic insights, and delivers weekly reports designed for SRH organizational leaders. Each report surfaces what your communities are actually saying — the concerns, the misinformation, the gaps in care — and translates it into actionable strategy your team can use immediately.</p>
+        <p>Built for the movement, by someone inside it. Currently in early access.</p>
+
+        <div class="cs-metrics" style="grid-template-columns:repeat(4,1fr);margin-top:24px;">
+          <div class="cs-metric"><div class="m-num">35+</div><div class="m-lbl">Subreddits Monitored</div></div>
+          <div class="cs-metric"><div class="m-num">Weekly</div><div class="m-lbl">Report Cadence</div></div>
+          <div class="cs-metric"><div class="m-num">AI</div><div class="m-lbl">Powered Analysis</div></div>
+          <div class="cs-metric"><div class="m-num">Live</div><div class="m-lbl">Early Access</div></div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="cs-tag">Community Intelligence</span>
+          <span class="cs-tag">Reddit Monitoring</span>
+          <span class="cs-tag">Reproductive Health</span>
+          <span class="cs-tag">Weekly Reports</span>
+          <span class="cs-tag">Misinformation</span>
+          <span class="cs-tag">Strategic Insights</span>
+        </div>
+
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://reprointel.com/#preview" target="_blank" class="btn btn-orange" style="text-decoration:none;">See a Sample Report →</a>
         </div>
       </div>
 
@@ -4483,7 +4598,9 @@
     { id: 'cs-reddit-monitoring', badge: 'Autonomous Monitoring', title: 'SRH Reddit Monitoring', org: 'Power to Decide · Bedsider · AbortionFinder', desc: 'Autonomous system tracking SRH conversations on Reddit for data-informed strategy.' },
     { id: 'cs-sti-dashboard', badge: 'Live Dashboard · Social Intelligence', title: 'STI Analytics Dashboard', org: 'Anonymous', desc: 'Real-time Reddit intelligence platform monitoring 75+ subreddits for STI conversations.' },
     { id: 'cs-title-x', badge: 'Autonomous Agent · Data Verification', title: 'Title X Clinic Verification', org: 'Anonymous · Title X Network', desc: 'Custom Python agent verifying 86 clinics across 48 data fields for patient safety.' },
-    { id: 'cs-exec-enabler', badge: 'Thought Leadership · Presentation', title: 'AI as an Executive Enabler in SRH', org: 'Planned Parenthood Federation', desc: '18-slide leadership framework with 3 original AI governance frameworks.' }
+    { id: 'cs-exec-enabler', badge: 'Thought Leadership · Presentation', title: 'AI as an Executive Enabler in SRH', org: 'Planned Parenthood Federation', desc: '18-slide leadership framework with 3 original AI governance frameworks.' },
+    { id: 'cs-vendor-screener', badge: 'Featured · Free Tool', title: 'Digital Vendor Accountability Tool', org: 'Frame + Forge · Free Resource', desc: 'Interactive screening tool that evaluates vendor privacy policies against SRH-specific accountability standards.', featured: true },
+    { id: 'cs-repro-intel', badge: 'Featured · Product', title: 'Repro Intel', org: 'Frame + Forge · Early Access', desc: 'Weekly AI-powered intelligence reports from Reddit conversations your patients and communities are already having.', featured: true }
   ];
 
   function buildRelatedTiles(currentId) {
