@@ -2585,6 +2585,17 @@
     .ri-form .form-row { grid-template-columns: 1fr; gap: 0; }
   }
 </style>
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2259317');
+</script>
+<!-- End MailerLite Universal -->
+
 </head>
 <body>
 
@@ -2611,6 +2622,7 @@
       <li class="nav-dropdown"><a href="#" id="nav-audit">Free Resources</a>
         <div class="nav-dropdown-menu">
           <a href="#" onclick="showPage('audit')">AI Digital Check-Up</a>
+          <a href="#" onclick="showPage('fieldguide')">AI Governance Field Guide</a>
           <a href="https://shr-vendor-screener.vercel.app" target="_blank">Vendor Accountability Check ↗</a>
         </div>
       </li>
@@ -4423,6 +4435,536 @@
 
 
 <!-- ============================================
+     FIELD GUIDE PAGE
+============================================ -->
+<div class="page" id="page-fieldguide">
+
+  <style>
+    /* Keep hero dark for brand impact */
+    .fg-hero { background:var(--royal); padding:100px 0 80px; position:relative; overflow:hidden; }
+    .fg-hero::before { content:''; position:absolute; top:-100px; right:-100px; width:400px; height:400px; background:var(--yellow); border-radius:50%; opacity:.06; }
+    .fg-hero h1 { font-family:var(--font-display); font-weight:900; font-style:italic; font-size:clamp(36px,5vw,56px); text-transform:uppercase; color:var(--white); line-height:1.0; margin-bottom:12px; }
+    .fg-hero h1 em { color:var(--yellow); font-style:normal; }
+    .fg-hero-sub { font-size:20px; color:rgba(255,255,255,.65); max-width:680px; line-height:1.6; }
+    .fg-hero-tags { display:flex; gap:8px; margin-top:20px; }
+    .fg-tag { font-family:var(--font-mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:2px; color:var(--white); }
+    .fg-tag-o { background:var(--orange); }
+    .fg-tag-p { background:var(--pink); }
+    .fg-tag-y { background:rgba(255,215,0,.2); color:var(--yellow); }
+
+    /* Light mode content sections */
+    .fg-section { background:#faf8f5; padding:80px 0; position:relative; }
+    .fg-section::before { display:none; }
+    .fg-section-alt { background:#f0ede8; }
+
+    .fg-sh { display:flex; align-items:center; gap:14px; background:var(--royal); border-radius:6px; padding:14px 22px; margin-bottom:8px; }
+    .fg-sh-bar { width:4px; height:28px; background:var(--orange); border-radius:2px; flex-shrink:0; }
+    .fg-sh-n { font-family:var(--font-display); font-weight:900; font-size:14px; color:var(--yellow); opacity:.5; }
+    .fg-sh h2 { font-family:var(--font-display); font-weight:900; font-size:clamp(20px,3vw,28px); text-transform:uppercase; color:var(--white); line-height:1.1; }
+    .fg-sh h2 em { color:var(--yellow); font-style:normal; }
+
+    .fg-sub { font-family:var(--font-mono); font-size:11px; letter-spacing:1px; color:#8a8a99; margin-bottom:20px; margin-top:8px; }
+
+    .fg-text { color:#3d4a5c; font-size:16px; line-height:1.7; margin-bottom:14px; max-width:800px; }
+    .fg-text strong { color:#0f1420; }
+    .fg-text em { color:#1e2a3a; }
+
+    .fg-evidence { background:#fff; border-left:4px solid var(--orange); padding:16px 20px; margin:14px 0; border-radius:0 6px 6px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+    .fg-evidence-t { font-family:var(--font-display); font-weight:900; font-size:14px; text-transform:uppercase; color:var(--royal); letter-spacing:.3px; margin-bottom:4px; }
+    .fg-evidence p { color:#4a5568; font-size:14px; line-height:1.6; margin:0; }
+
+    .fg-callout { background:#fff4ee; border:2px solid var(--orange); border-left-width:4px; padding:18px 22px; margin:20px 0; border-radius:0 6px 6px 0; }
+    .fg-callout p { color:#1e2a3a; font-size:15px; line-height:1.6; margin:0 0 6px; }
+
+    .fg-callout-dark { background:var(--royal-dk); border-left:4px solid var(--pink); padding:20px 24px; border-radius:6px; margin:20px 0; }
+    .fg-callout-dark p { color:rgba(255,255,255,.8); font-size:15px; line-height:1.6; margin:0; }
+    .fg-callout-dark strong { color:var(--white); }
+    .fg-callout-dark-h { font-family:var(--font-display); font-weight:900; font-size:14px; text-transform:uppercase; color:var(--yellow); margin-bottom:6px; }
+
+    .fg-callout-blue { background:var(--royal); padding:20px 24px; border-radius:6px; margin:20px 0; border-left:4px solid var(--cyan); }
+    .fg-callout-blue p { color:rgba(255,255,255,.75); font-size:15px; line-height:1.6; margin:0 0 6px; }
+    .fg-callout-blue strong { color:var(--white); }
+
+    .fg-pq { background:var(--yellow); border-radius:6px; padding:28px 32px; margin:28px 0; position:relative; box-shadow:4px 4px 0 var(--orange); }
+    .fg-pq::before { content:'\201C'; font-family:var(--font-body); font-weight:900; font-size:100px; color:var(--orange); opacity:.15; position:absolute; top:-10px; left:12px; line-height:1; }
+    .fg-pq p { font-family:var(--font-body); font-weight:700; font-size:20px; line-height:1.35; color:var(--dark); margin:0; position:relative; z-index:2; }
+
+    .fg-pq-dark { background:var(--royal-dk); border-left:4px solid var(--pink); border-radius:6px; padding:24px 28px; margin:24px 0; }
+    .fg-pq-dark p { font-family:var(--font-body); font-weight:700; font-size:18px; line-height:1.35; color:var(--white); margin:0; }
+
+    .fg-barrier { background:#fff; border-left:4px solid var(--orange); padding:14px 18px; margin:14px 0; border-radius:0 6px 6px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+    .fg-barrier-n { font-family:var(--font-display); font-weight:900; font-size:14px; text-transform:uppercase; color:var(--royal); margin-bottom:4px; }
+    .fg-barrier p { color:#4a5568; font-size:14px; line-height:1.6; margin:0; }
+
+    .fg-team-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+    @media(max-width:768px) { .fg-team-grid { grid-template-columns:1fr; } }
+    .fg-tc { background:#fff; border-radius:6px; padding:16px 20px; box-shadow:0 1px 4px rgba(0,0,0,.05); border:1px solid #e8e4de; }
+    .fg-tc-h { font-family:var(--font-display); font-weight:900; font-size:13px; text-transform:uppercase; color:var(--white); background:var(--royal); display:inline-block; padding:3px 12px; border-radius:2px; margin-bottom:10px; }
+    .fg-tc-h-orange { background:var(--orange); color:var(--white); }
+    .fg-tc ul { list-style:none; padding:0; margin:0 0 8px; }
+    .fg-tc li { position:relative; padding-left:16px; margin-bottom:5px; font-size:13px; color:#4a5568; line-height:1.5; }
+    .fg-tc li::before { content:'\2192'; position:absolute; left:0; top:0; color:var(--orange); font-weight:700; }
+    .fg-tc-q { font-size:12px; font-weight:600; color:var(--royal); padding-top:6px; border-top:1px solid #e8e4de; margin-top:6px; }
+    .fg-tc-action { font-size:12px; color:#1e2a3a; background:rgba(232,82,10,.06); padding:8px 10px; border-radius:3px; margin-top:8px; line-height:1.4; }
+    .fg-tc-action strong { font-family:var(--font-mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); display:block; margin-bottom:3px; }
+
+    .fg-inv { width:100%; border-collapse:collapse; font-size:12px; margin:16px 0; }
+    .fg-inv th { background:var(--royal); color:var(--white); font-family:var(--font-mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; text-align:left; padding:10px 10px; }
+    .fg-inv td { padding:10px 10px; border-bottom:1px solid #e8e4de; color:#4a5568; vertical-align:top; line-height:1.4; background:#fff; }
+    .fg-inv tr:nth-child(even) td { background:#faf8f5; }
+    .fg-inv .rl { font-family:var(--font-display); font-weight:700; color:var(--royal); font-size:12px; text-transform:uppercase; }
+    .fg-inv .re { font-size:10px; color:#8a8a99; font-style:italic; }
+
+    .fg-predict { background:var(--royal-dk); border-radius:6px; padding:20px 24px; margin:20px 0; border-left:4px solid var(--orange); }
+    .fg-predict-h { font-family:var(--font-display); font-weight:900; font-size:14px; text-transform:uppercase; color:var(--yellow); margin-bottom:10px; }
+    .fg-predict ul { list-style:none; padding:0; }
+    .fg-predict li { position:relative; padding-left:16px; margin-bottom:6px; font-size:13px; color:rgba(255,255,255,.65); line-height:1.5; }
+    .fg-predict li::before { content:'\2192'; position:absolute; left:0; top:0; color:var(--orange); font-weight:700; }
+    .fg-predict-foot { font-size:12px; color:rgba(255,255,255,.35); font-style:italic; margin-top:10px; }
+
+    .fg-vendor-q { background:#fff; border-left:4px solid var(--pink); padding:14px 18px; margin:12px 0; border-radius:0 6px 6px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+    .fg-vendor-q .fg-barrier-n { color:var(--pink); }
+
+    .fg-policy-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0; }
+    @media(max-width:768px) { .fg-policy-grid { grid-template-columns:1fr; } }
+    .fg-policy-item { display:flex; gap:10px; align-items:flex-start; padding:12px 14px; background:#fff; border-radius:4px; border:1px solid #e8e4de; }
+    .fg-policy-num { font-family:var(--font-display); font-weight:900; font-size:24px; color:var(--royal); opacity:.2; line-height:1; flex-shrink:0; width:28px; }
+    .fg-policy-item strong { font-family:var(--font-display); font-weight:900; font-size:12px; text-transform:uppercase; color:var(--royal); display:block; margin-bottom:2px; }
+    .fg-policy-item p { font-size:12px; color:#4a5568; line-height:1.4; margin:0; }
+    .fg-policy-full { grid-column:1/-1; }
+
+    .fg-ni { position:relative; padding-left:20px; margin-bottom:14px; }
+    .fg-ni::before { content:'\2192'; position:absolute; left:0; top:2px; color:var(--orange); font-weight:700; font-size:14px; }
+    .fg-ni strong { font-family:var(--font-display); font-weight:900; font-size:13px; text-transform:uppercase; color:var(--royal); display:block; margin-bottom:2px; }
+    .fg-ni p { font-size:14px; color:#4a5568; margin:0; }
+
+    .fg-resource { background:#fff; border-left:4px solid var(--royal); padding:12px 16px; margin:10px 0; border-radius:0 4px 4px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+    .fg-resource-n { font-family:var(--font-display); font-weight:900; font-size:13px; text-transform:uppercase; color:#0f1420; margin-bottom:3px; }
+    .fg-resource p { font-size:13px; color:#4a5568; margin:0; line-height:1.5; }
+    .fg-resource a { color:var(--royal); font-weight:600; }
+
+    /* Keep download CTA dark for contrast */
+    .fg-cta { background:var(--royal); padding:80px 0; text-align:center; }
+    .fg-cta h2 { font-family:var(--font-display); font-weight:900; font-style:italic; font-size:32px; text-transform:uppercase; color:var(--white); margin-bottom:16px; }
+    .fg-cta p { color:rgba(255,255,255,.6); font-size:17px; max-width:600px; margin:0 auto 24px; line-height:1.6; }
+    .fg-download-box { background:rgba(255,255,255,.06); border-radius:8px; padding:40px; margin:40px 0; text-align:center; border:2px solid rgba(255,255,255,.08); }
+    .fg-download-box h3 { font-family:var(--font-display); font-weight:900; font-size:24px; text-transform:uppercase; color:var(--white); margin-bottom:8px; }
+    .fg-download-box h3 em { color:var(--yellow); font-style:normal; }
+    .fg-download-box p { color:rgba(255,255,255,.55); font-size:15px; margin-bottom:20px; }
+
+    .fg-divider { display:flex; height:3px; margin:32px 0; border-radius:2px; overflow:hidden; }
+    .fg-divider span:nth-child(1) { flex:4; background:var(--royal); }
+    .fg-divider span:nth-child(2) { flex:2; background:var(--orange); }
+    .fg-divider span:nth-child(3) { flex:1; background:var(--pink); }
+    .fg-divider span:nth-child(4) { flex:.6; background:var(--yellow); }
+    .fg-divider span:nth-child(5) { flex:.4; background:var(--cyan); }
+
+    .fg-nq { list-style:none; padding:0; margin:14px 0; counter-reset:q; }
+    .fg-nq li { counter-increment:q; position:relative; padding-left:34px; margin-bottom:10px; font-size:14px; color:#4a5568; line-height:1.5; }
+    .fg-nq li::before { content:counter(q); position:absolute; left:0; top:0; width:22px; height:22px; background:var(--orange); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:900; font-size:11px; }
+
+    .fg-how-to-use { background:#fff; border:2px solid var(--royal); padding:20px 24px; border-radius:6px; margin-bottom:28px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .fg-how-to-use p { color:#4a5568; font-size:14px; line-height:1.6; margin:0 0 6px; }
+    .fg-how-to-use strong { color:var(--royal); }
+  </style>
+
+  <!-- HERO -->
+  <section class="fg-hero">
+    <div class="container">
+      <div class="label" style="margin-bottom:28px;">Free Movement Resource</div>
+      <h1>AI Governance for the Reproductive Health <em>Movement</em></h1>
+      <p class="fg-hero-sub"><strong style="color:var(--white);">From Invisible Risk to Intentional Leadership.</strong> A field guide with three tools your organization can use this week.</p>
+      <div class="fg-hero-tags">
+        <span class="fg-tag fg-tag-o">25+ Years SRH</span>
+        <span class="fg-tag fg-tag-p">Movement Resource</span>
+        <span class="fg-tag fg-tag-y">Free to Share</span>
+      </div>
+      <p style="color:rgba(255,255,255,.4);font-size:13px;margin-top:20px;">By Lyndsay Sanborn, MHPA &middot; Version 1.0 &middot; April 2026</p>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="fg-section">
+    <div class="container">
+      <div class="fg-download-box" style="background:#fff;border:2px solid var(--royal);margin:0 0 28px;text-align:center;">
+        <h3 style="color:var(--royal);">Want the <em style="color:var(--orange);font-style:normal;">PDF Version</em>?</h3>
+        <p style="color:#4a5568;">Get the printable field guide with all three tools ready for your next leadership meeting.</p>
+        <div class="ml-embedded" data-form="rusX6z"></div>
+      </div>
+      <div class="fg-how-to-use">
+        <p style="font-family:var(--font-display);font-weight:900;font-size:14px;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">How to Use This Guide</p>
+        <p><strong>If you have 10 minutes:</strong> Read sections 1-4. You'll understand the stakes and why this can't wait.</p>
+        <p><strong>If you have a leadership meeting this week:</strong> Go straight to section 10 (AI Inventory) and section 14 (Board Framing).</p>
+        <p><strong>If you want to share this with your team:</strong> Send each team lead their section from "Find Your Team, Find Your Risk."</p>
+        <p><strong>If you need to start a vendor conversation:</strong> Section 11 (Five Questions to Ask Your Vendors) is ready to use as-is.</p>
+      </div>
+
+      <!-- 01: BEFORE THE APPOINTMENT -->
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">01</div><h2>Before the <em>Appointment</em></h2></div>
+      <div class="fg-sub">Your patient already had a conversation about their care. It wasn't with you.</div>
+
+      <p class="fg-text">Before your patient walks through the door, before they schedule the appointment, before they even know your clinic exists, they have already had a conversation about their care.</p>
+      <p class="fg-text">Not with a friend. Not with a doctor. With ChatGPT.</p>
+      <p class="fg-text">They typed something at 2am because they were too afraid to call a clinic, too afraid to ask a friend, too afraid to Google it where someone might see. They asked about a missed period. About whether the pills were safe. About what happens if they're undocumented and need an abortion in Texas. They asked the AI because it felt like the safest, most private option available to them.</p>
+      <p class="fg-text">It was neither safe nor private. There is no legal privilege protecting that conversation. No HIPAA. No doctor-patient confidentiality. That conversation is a stored corporate data record that can be subpoenaed. And the information they received was likely incomplete, inaccurate, or actively harmful.</p>
+      <p class="fg-text">They arrived at your clinic with beliefs shaped by an algorithm that doesn't know them, doesn't know your work, and wasn't built with their safety in mind. Your provider is now treating not just the patient, but the misinformation they absorbed before they got there.</p>
+      <p class="fg-text"><strong>This is not a future scenario. This is today, in your waiting room.</strong></p>
+
+      <div class="fg-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- 02: EVIDENCE -->
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">02</div><h2>What AI Told Your Patient <em>Before They Called You</em></h2></div>
+      <div class="fg-sub">These are not hypotheticals. These are documented findings.</div>
+
+      <div class="fg-evidence">
+        <div class="fg-evidence-t">AI Overstates the Risks of Medication Abortion</div>
+        <p>A peer-reviewed study published in <em>Frontiers in Digital Health</em> found that ChatGPT repeatedly overstated the risks of self-managed medication abortion, directly contradicting established clinical evidence that it is safe and effective.</p>
+      </div>
+      <div class="fg-evidence">
+        <div class="fg-evidence-t">AI Directs Patients to Anti-Abortion Resources</div>
+        <p>A Bloomberg investigation in November 2025 found five major AI chatbots routinely directing users asking about abortion to a hotline promoting "abortion pill reversal," a practice rejected by ACOG as unproven and potentially harmful.</p>
+      </div>
+      <div class="fg-evidence">
+        <div class="fg-evidence-t">AI Chatbot Conversations Are Legal Evidence</div>
+        <p>In October 2025, DHS obtained the first known federal search warrant compelling OpenAI to disclose a user's full ChatGPT history. Every conversation, every prompt, IP logs, payment data. The legal template now exists for state attorneys general.</p>
+      </div>
+      <div class="fg-evidence">
+        <div class="fg-evidence-t">Deleted Conversations May Not Be Deleted</div>
+        <p>In May 2025, a federal court ordered OpenAI to preserve all ChatGPT conversation logs for consumer account users, including conversations already deleted. That data exists on OpenAI's servers under legal hold.</p>
+      </div>
+
+      <div class="fg-callout">
+        <p><strong>The person who typed "I'm in Texas, what are my options?" into ChatGPT at 2am has left a more detailed, more searchable, more legally actionable record than they would have by calling your clinic.</strong></p>
+        <p>Your patients don't know this. They need to hear it from you.</p>
+      </div>
+
+      <!-- 03: WHAT TO TELL PATIENTS -->
+      <div class="fg-callout-dark">
+        <div class="fg-callout-dark-h">What to Tell Your Patients</div>
+        <p>Adapt this language for waiting rooms, post-appointment materials, social media, and your website:</p>
+        <p style="margin-top:8px;font-style:italic;color:rgba(255,255,255,.9);"><strong>"AI chatbots are not confidential. When you ask ChatGPT, Gemini, or any AI tool about abortion, your symptoms, or your options, that conversation is stored and can be handed over to law enforcement with a warrant. This has already happened. Call us instead. What you tell your provider is legally protected in ways that AI chatbots are not."</strong></p>
+        <p style="margin-top:10px;">One additional thing your organization can do: <strong>publish more plain-language clinical content.</strong> AI is trained on what's publicly available. The reproductive health internet is saturated with anti-abortion content produced at scale. Every accurate, accessible piece your organization publishes enters that training ecosystem. Most reproductive health organizations are dramatically underinvested here. The information you don't publish is a gap that misinformation fills.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03-04: ORG REALITY + LEGAL -->
+  <section class="fg-section fg-section-alt">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">03</div><h2>AI Is Already in <em>Your Organization</em></h2></div>
+      <div class="fg-sub">This guide is not asking you to adopt AI. It is asking you to govern what is already there.</div>
+
+      <p class="fg-text">Your staff is already using AI. A development director is drafting grant narratives in ChatGPT because it's faster. A clinic manager is summarizing patient feedback in Gemini. A communications staffer is running program descriptions through an AI tool. A provider is looking up clinical questions in a chatbot. None of them thought of it as a data governance decision. All of it created records outside your organization's control.</p>
+      <p class="fg-text">Your vendors have already embedded AI. Your EHR, your CRM, your email platform, your scheduling software, your donor management system. Many of these have AI features that arrived through software updates, turned on by default, without anyone on your team making a conscious choice.</p>
+      <p class="fg-text"><strong>This is not a technology problem to solve someday. It is an operational reality to govern now.</strong></p>
+
+      <div class="fg-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">04</div><h2>The Legal Exposure <em>Leaders Cannot Ignore</em></h2></div>
+      <div class="fg-sub">In a post-Dobbs environment, ungoverned AI is active legal exposure.</div>
+
+      <p class="fg-text">AI tools that infer gestational timing from intake patterns create structured datasets. Chatbot conversations about medication access create logs. CRM systems that tag behavioral signals create records. <strong>All of it may be subpoenable.</strong> Twelve states have laws that could be used to prosecute patients, providers, and helpers, and several have broad data-access provisions.</p>
+      <p class="fg-text">When staff use a consumer AI account to process anything related to patient care, that data is governed by the vendor's law enforcement disclosure policy, not yours. OpenAI's policy confirms it will disclose user content in response to a valid warrant. So will Google. So will every major AI provider.</p>
+      <p class="fg-text"><strong>AI governance for reproductive health organizations is not only an ethical obligation. In 2026, it is a legal one.</strong></p>
+
+      <div class="fg-callout-dark">
+        <div class="fg-callout-dark-h">Before You Read Further, Ask Yourself:</div>
+        <p>If a hostile state attorney general subpoenaed everything your AI tools have ever recorded or inferred about your patients, your staff, and your operations: <strong>do you know what they would find?</strong></p>
+      </div>
+
+      <div class="fg-pq">
+        <p>Understanding AI is a survival skill for our movement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05: BIAS -->
+  <section class="fg-section">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">05</div><h2>The Bias <em>Is Built In</em></h2></div>
+      <div class="fg-sub">AI doesn't just reflect the world. It reflects who built it and what they trained it on.</div>
+
+      <p class="fg-text">The training data behind most AI models draws from the internet at scale. That includes decades of reproductive health stigma embedded in medical literature, crisis pregnancy center content produced at industrial volume, racial bias in clinical research, and ideologically driven misinformation about abortion, contraception, and sexual health. When an AI system generates a response about reproductive care, it carries all of that forward.</p>
+      <p class="fg-text">The communities your organizations exist to serve are the communities AI is most likely to get wrong. Black women, whose symptoms are systematically undertreated in the clinical literature AI was trained on. Indigenous communities, whose health experiences are largely absent from training data. LGBTQ+ patients, whose needs are flattened or erased by models that default to heteronormative assumptions. Young people, who receive oversimplified or paternalistic AI-generated guidance. Immigrants and undocumented people, whose safety concerns are invisible to systems that were never designed with legal risk in mind.</p>
+      <p class="fg-text">This is not a bug to be fixed with better data. It is a structural condition of how AI is built. The models are not neutral. The outputs are not objective. And the communities with the least power to push back are the ones most likely to be harmed by outputs that look authoritative but carry bias their users cannot see.</p>
+      <p class="fg-text"><strong>AI governance in the reproductive health movement is not just an operational necessity. It is a reproductive justice obligation.</strong></p>
+    </div>
+  </section>
+
+  <!-- 06: BARRIERS -->
+  <section class="fg-section fg-section-alt">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">06</div><h2>What We're Hearing <em>Across the Movement</em></h2></div>
+      <div class="fg-sub">Based on conversations with leaders at Planned Parenthood affiliates, abortion funds, Title X networks, and national advocacy organizations.</div>
+
+      <div class="fg-barrier">
+        <div class="fg-barrier-n">"We Can't Engage Until We Resolve the Ethics"</div>
+        <p>The ethical concerns are real: bias, surveillance, equity, what it means to automate care in communities already failed by systems. But AI is operating inside most reproductive health organizations right now without the benefit of anyone's ethical judgment. Organizations breaking through this have recognized that <strong style="color:var(--white);">engaging with governance <em>is</em> the ethical response.</strong> Waiting for ethical clarity while AI runs ungoverned is not a principled position. It is an exposure position.</p>
+      </div>
+      <div class="fg-barrier">
+        <div class="fg-barrier-n">"We Need to Keep Our Doors Open First"</div>
+        <p>Every reproductive health leader has fifteen things more urgent than AI governance. But AI isn't a new item on the list. It's already embedded in the items on the list: patient communications, fundraising, vendor relationships, staff workflows. Organizations moving forward have reframed this: <strong style="color:var(--white);">they're already spending time and resources on AI. The question is whether they're doing it with visibility, policy, and intention.</strong></p>
+      </div>
+      <div class="fg-barrier">
+        <div class="fg-barrier-n">"It All Feels Too Big"</div>
+        <p>The AI conversation gets tangled with surveillance capitalism, job displacement, the future of healthcare. When everything feels existential, nothing feels actionable. Organizations breaking through this have narrowed the frame: <strong style="color:var(--white);">govern what's in your organization right now.</strong> That is a bounded, manageable problem, not a philosophical one.</p>
+      </div>
+      <div class="fg-barrier">
+        <div class="fg-barrier-n">"We Don't Have the Expertise"</div>
+        <p>Most reproductive health organizations don't have technical staff or AI expertise on the team. Leaders know they don't, which makes every decision feel risky. Organizations getting past this have found that <strong style="color:var(--white);">they don't need to become AI experts. They need a decision framework and, often, a partner who has done this work in similar organizations.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07-08: TEAMS -->
+  <section class="fg-section">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">07</div><h2>Find Your Team, <em>Find Your Risk</em></h2></div>
+      <div class="fg-sub">AI shows up differently across your organization. Share each section with the relevant team lead.</div>
+
+      <div class="fg-team-grid">
+        <div class="fg-tc">
+          <div class="fg-tc-h">Clinical Teams</div>
+          <ul>
+            <li>Staff may be looking up clinical questions in consumer AI tools, creating records outside your HIPAA framework</li>
+            <li>AI is embedded in your EHR and patient communication tools, often activated by the vendor without explicit consent</li>
+            <li>Intake tools may be inferring gestational timing or reproductive intent, creating structured, subpoenable datasets</li>
+          </ul>
+          <div class="fg-tc-q">First question: What patient data is already in an AI system your organization doesn't control?</div>
+          <div class="fg-tc-action"><strong>This week</strong>Ask every provider on your team if they have used ChatGPT, Gemini, or any AI tool for anything patient-related in the last 90 days. Frame it as a no-judgment question.</div>
+        </div>
+
+        <div class="fg-tc">
+          <div class="fg-tc-h">Communications Teams</div>
+          <ul>
+            <li>Embargoed press releases, unreleased campaign messaging, and sensitive positioning documents entered into AI tools become data the vendor controls, not you</li>
+            <li>AI-drafted content collapses your organization's unique voice and narrative into generic nonprofit language</li>
+            <li>Staff using AI for messaging without review risk producing content that is off-brand or medically inaccurate</li>
+          </ul>
+          <div class="fg-tc-q">First question: Has your team put embargoed or pre-release content into a public AI tool?</div>
+          <div class="fg-tc-action"><strong>This week</strong>Pull the last five pieces of externally published content. Ask whether AI was used in drafting any of them.</div>
+        </div>
+
+        <div class="fg-tc">
+          <div class="fg-tc-h">Development & Fundraising</div>
+          <ul>
+            <li>Grant narratives are being drafted in ChatGPT, sometimes with program data, patient outcomes, or strategy</li>
+            <li>Donor CRM platforms have AI scoring and segmentation features that may have activated in an update</li>
+            <li>Funder communications may contain embargoed strategy or budget data now on third-party servers</li>
+          </ul>
+          <div class="fg-tc-q">First question: What organizational data has entered an AI tool through your fundraising workflow?</div>
+          <div class="fg-tc-action"><strong>This week</strong>Ask your development team if anyone has used AI to draft a grant narrative in the last six months. If yes, what data went in?</div>
+        </div>
+
+        <div class="fg-tc">
+          <div class="fg-tc-h">Program & Advocacy</div>
+          <ul>
+            <li>Policy analysis and legislative tracking tools increasingly have AI built in</li>
+            <li>Constituent communications may be drafted with AI that retains content about strategy or vulnerable populations</li>
+            <li>Program evaluation tools may process participant data through AI layers without clear disclosure</li>
+          </ul>
+          <div class="fg-tc-q">First question: Is your advocacy strategy or participant data flowing through an AI system a hostile actor could access?</div>
+          <div class="fg-tc-action"><strong>This week</strong>Review the last three legislative tracking tools your team used. Check whether any have AI features.</div>
+        </div>
+      </div>
+
+      <div class="fg-tc" style="margin-top:4px;">
+        <div class="fg-tc-h fg-tc-h-orange">Operations & HR</div>
+        <ul style="columns:2;column-gap:20px;">
+          <li>AI is influencing your hiring decisions: applicant tracking systems score and filter candidates using AI, often with documented bias</li>
+          <li>Staff may be running candidate resumes through ChatGPT, creating unvetted hiring judgments with no audit trail</li>
+          <li>Performance, scheduling, and internal comms platforms have embedded AI features that arrived without review</li>
+          <li>HR is where staff bring their AI questions and fears, and most HR teams have no guidance to offer</li>
+        </ul>
+        <div class="fg-tc-q">First question: Do you know whether AI is shaping your hiring decisions, and does HR have any staff-facing AI guidance?</div>
+        <div class="fg-tc-action"><strong>This week</strong>Ask your hiring managers if anyone has used AI to screen or evaluate candidates in the last year. Check whether your ATS uses AI scoring.</div>
+      </div>
+
+      <div class="fg-pq-dark" style="margin-top:24px;">
+        <p>Governance that belongs to everyone belongs to no one. Name the person. Give them the authority. Make it visible to staff.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09: STAFF/LABOR -->
+  <section class="fg-section fg-section-alt">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">09</div><h2>The Conversation <em>Before the Policy</em></h2></div>
+      <div class="fg-sub">Your staff is watching how you handle AI. What they see will shape whether they trust you through what comes next.</div>
+
+      <p class="fg-text">In a field where unions are increasingly common, where funding is being cut, where people took these jobs because the mission meant something to them: AI is not just a technology question. It is a proxy for a deeper one. <em>Does this organization value the people doing the work?</em></p>
+      <p class="fg-text">Some of your staff are afraid AI will be used to justify eliminating their positions, especially as funding contracts. Others are already using AI every day without guidelines, in silence, because no one told them whether it was allowed. Most are doing both at the same time.</p>
+      <p class="fg-text">If leadership introduces AI governance without naming that tension directly, staff will fill the silence with their worst assumptions. In the current labor environment, those assumptions become grievances, organizing energy, or turnover. Fast.</p>
+      <p class="fg-text">The organizations that get this right say it out loud: <strong>here is what we will and will not automate, here is why, and here is what that means for your role.</strong> Not after the decision is made. Before it.</p>
+
+      <div class="fg-pq-dark">
+        <p>If you wouldn't publish it on your website, don't put it into a public AI tool.</p>
+      </div>
+
+      <div class="fg-callout" style="margin-top:16px;">
+        <p style="font-family:var(--font-display);font-weight:900;font-size:13px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">The Simplest Staff Rule You Can Set Today</p>
+        <p>No patient information, no client details, no embargoed content, no confidential strategy, no budget information, no internal personnel matters, no personally identifying information of any kind. That single rule handles 80% of the data questions your staff are asking in silence because nobody gave them a clear answer.</p>
+      </div>
+
+      <div class="fg-callout-blue" style="margin-top:16px;">
+        <p><strong>AI governance is not just a technology decision. In 2026, for reproductive health organizations navigating funding cuts and workforce instability, it is a labor relations decision.</strong></p>
+        <p>Policy written without staff input will not hold. Have the conversation first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10: AI INVENTORY -->
+  <section class="fg-section">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">10</div><h2>Start Here: <em>The AI Inventory</em></h2></div>
+      <div class="fg-sub">You cannot govern what you cannot see. This is one meeting with your leadership team.</div>
+
+      <p class="fg-text">Gather your leadership team. Set aside one meeting. Complete one row per tool or system. The goal is not a clean sheet. It is an honest picture of where AI is already operating in your organization. Most organizations that run this discover tools they didn't know were in use. <strong>That is not a failure. That is your starting point.</strong></p>
+
+      <table class="fg-inv">
+        <thead><tr>
+          <th style="width:17%">Function Area</th>
+          <th style="width:22%">Tool / System</th>
+          <th style="width:13%">Who Uses It</th>
+          <th style="width:15%">Data It Touches</th>
+          <th style="width:11%">Aware?</th>
+          <th style="width:22%">Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="rl">Patient-Facing Comms</span><br><span class="re">Chatbots, messaging, reminders</span></td><td></td><td></td><td>Patient / Clinical</td><td>Y / N</td><td></td></tr>
+          <tr><td><span class="rl">Intake & Triage</span><br><span class="re">Forms, CRM tagging, scheduling</span></td><td></td><td></td><td>Patient / Inferred</td><td>Y / N</td><td></td></tr>
+          <tr><td><span class="rl">Staff Productivity</span><br><span class="re">Drafting, summaries, research</span></td><td></td><td></td><td>Internal / Variable</td><td>Y / N</td><td></td></tr>
+          <tr><td><span class="rl">Fundraising & Dev</span><br><span class="re">Donor CRM, grants, AI scoring</span></td><td></td><td></td><td>Donor / Internal</td><td>Y / N</td><td></td></tr>
+          <tr><td><span class="rl">Comms & Content</span><br><span class="re">Social, web, email, press</span></td><td></td><td></td><td>Public / Low Sens.</td><td>Y / N</td><td></td></tr>
+          <tr><td><span class="rl">Program & Advocacy</span><br><span class="re">Legislative tools, evaluation</span></td><td></td><td></td><td>Participant / Strategy</td><td>Y / N</td><td></td></tr>
+          <tr><td><span class="rl">Embedded Vendor AI</span><br><span class="re">EHR, helpdesk, analytics, defaults</span></td><td></td><td></td><td>Variable / Unknown</td><td>Y / N</td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="fg-callout" style="border-color:var(--cyan);">
+        <p style="font-family:var(--font-display);font-weight:900;font-size:13px;text-transform:uppercase;color:var(--cyan);margin-bottom:6px;">After You Run the Inventory, Ask Three Questions:</p>
+        <ol class="fg-nq">
+          <li>For each tool: do we know what happens to the data our staff enters?</li>
+          <li>For each tool: is there a named person responsible for monitoring it?</li>
+          <li>For each tool: if this data were subpoenaed tomorrow, what would be exposed?</li>
+        </ol>
+      </div>
+
+      <div class="fg-predict">
+        <div class="fg-predict-h">What You'll Probably Find</div>
+        <ul>
+          <li>Your EHR or patient communication vendor turned on an AI feature in the last 12 months without notifying you explicitly</li>
+          <li>At least one staff member is using ChatGPT or a similar tool for patient-adjacent work</li>
+          <li>Your donor CRM has been AI-scoring, segmenting, or categorizing constituents for months</li>
+          <li>Your grant team has put program data or embargoed strategy into a public AI tool</li>
+          <li>Your communications team has used AI to draft materials on personal accounts with no data agreement</li>
+          <li>No one on your leadership team can name every AI tool currently active across the organization</li>
+        </ul>
+        <div class="fg-predict-foot">These patterns are consistent across reproductive health organizations of every size and type. The discovery is not a crisis. It is the reason governance exists.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11: VENDOR QUESTIONS -->
+  <section class="fg-section fg-section-alt">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">11</div><h2>Tool Two: Five Questions <em>to Ask Your Vendors</em></h2></div>
+      <div class="fg-sub">Most reproductive health organizations have never had this conversation. For a deeper assessment, use the free <a href="https://shr-vendor-screener.vercel.app" target="_blank" style="color:var(--cyan);">Digital Vendor Accountability Check</a>.</div>
+
+      <div class="fg-vendor-q"><div class="fg-barrier-n">1. What Data Trained This System?</div><p>Your vendor should be able to tell you what data their model was trained on and how they tested for bias in reproductive health contexts specifically.</p></div>
+      <div class="fg-vendor-q"><div class="fg-barrier-n">2. Is Our Data Used to Train Your Models?</div><p>Many AI vendors use customer data to improve their models unless you explicitly opt out. Ask. Get the answer in writing.</p></div>
+      <div class="fg-vendor-q"><div class="fg-barrier-n">3. Where Is Our Data Stored, and Who Can Access It?</div><p>In a post-Dobbs environment, where your data physically sits and who has legal access to it is a governance question with real consequences.</p></div>
+      <div class="fg-vendor-q"><div class="fg-barrier-n">4. What Is Your Law Enforcement Disclosure Policy?</div><p>You need to know what data they would hand over, under what circumstances, and whether they would notify you.</p></div>
+      <div class="fg-vendor-q"><div class="fg-barrier-n">5. What Happens to Our Data If We Leave?</div><p>Can you export your data? Is it fully deleted when you end the contract? How long do they retain it after termination?</p></div>
+
+      <div class="fg-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- 12: POLICY -->
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">12</div><h2>Tool Three: What Your AI Policy <em>Should Cover</em></h2></div>
+      <div class="fg-sub">You don't need a perfect policy. You need a clear one.</div>
+
+      <div class="fg-policy-grid">
+        <div class="fg-policy-item"><div class="fg-policy-num">01</div><div><strong>Which AI Tools Are Approved</strong><p>Name them. A policy that says "use AI responsibly" gives staff nothing to work with.</p></div></div>
+        <div class="fg-policy-item"><div class="fg-policy-num">02</div><div><strong>What Data Can and Cannot Enter</strong><p>Be explicit. Staff need to hear this stated clearly, not implied.</p></div></div>
+        <div class="fg-policy-item"><div class="fg-policy-num">03</div><div><strong>Who Is Responsible for Oversight</strong><p>Name a person, not a committee. Someone with actual authority to monitor, pause, or stop an AI tool.</p></div></div>
+        <div class="fg-policy-item"><div class="fg-policy-num">04</div><div><strong>How Outputs Are Reviewed</strong><p>AI-generated content should be reviewed by a human before it reaches its audience.</p></div></div>
+        <div class="fg-policy-item"><div class="fg-policy-num">05</div><div><strong>How Vendor AI Is Evaluated</strong><p>A software update that adds AI is a governance event, not just a software update.</p></div></div>
+        <div class="fg-policy-item"><div class="fg-policy-num">06</div><div><strong>What Happens When Something Goes Wrong</strong><p>Staff need a clear path for reporting AI errors or concerns.</p></div></div>
+        <div class="fg-policy-item fg-policy-full"><div class="fg-policy-num">07</div><div><strong>How Often the Policy Is Reviewed</strong><p>AI changes fast. Build in a review cadence: quarterly for the first year, then at minimum annually.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13: COST + EQUITY -->
+  <section class="fg-section">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">13</div><h2>A Note on <em>Cost and Equity</em></h2></div>
+      <div class="fg-sub">The compliance path costs money. That is not an accident.</div>
+
+      <p class="fg-text">The organizations with the highest legal exposure to ungoverned AI are often the least able to afford compliant alternatives. Large health systems can buy their way into AI compliance with enterprise accounts, dedicated security teams, and legal counsel on retainer. An independent clinic in Mississippi, an abortion fund running on a $200K budget, a mutual aid network staffed by volunteers: they face the same AI risks with a fraction of the resources.</p>
+      <p class="fg-text"><strong>The gap between the AI tools that are safe and the AI tools that are affordable is not accidental. It is a structural equity problem, and it will not close on its own.</strong></p>
+      <p class="fg-text">Part of what this movement needs to be advocating for is subsidized access to privacy-compliant AI infrastructure for mission-driven health organizations. Until that happens, the tools in this guide help you govern what you have with what you can afford.</p>
+    </div>
+  </section>
+
+  <!-- 14: WHAT COMES NEXT -->
+  <section class="fg-section fg-section-alt">
+    <div class="container">
+      <div class="fg-sh"><div class="fg-sh-bar"></div><div class="fg-sh-n">14</div><h2>What <em>Comes Next</em></h2></div>
+      <div class="fg-sub">The inventory and vendor questions give you visibility. Visibility is where governance begins, not where it ends.</div>
+
+      <div class="fg-ni"><strong>Building a Decision Framework</strong><p>A repeatable way to evaluate every AI tool, new or inherited, against your specific risk profile, data obligations, and mission.</p></div>
+      <div class="fg-ni"><strong>Tiering Their Risk</strong><p>Because a meeting summary tool and an AI-assisted patient intake system carry fundamentally different exposure.</p></div>
+      <div class="fg-ni"><strong>Building Staff Policy That Actually Holds</strong><p>Grounded in the staff conversation, clear enough to use, specific enough to protect patients, visible enough to survive leadership turnover.</p></div>
+      <div class="fg-ni"><strong>Making Governance Board-Visible</strong><p>So that when a funder asks, when a crisis hits, when a journalist calls, leadership can answer without hesitation.</p></div>
+
+      <div class="fg-callout" style="border-color:var(--cyan);margin-top:20px;">
+        <p style="font-family:var(--font-display);font-weight:900;font-size:13px;text-transform:uppercase;color:var(--cyan);margin-bottom:6px;">How to Bring This to Your Board</p>
+        <p>Board members need to hear three things: <strong>AI is already operating in the organization</strong> through staff use and vendor features that arrived without a governance decision. <strong>It creates legal exposure we are not currently managing,</strong> particularly in states with hostile enforcement environments. And <strong>governance is a leadership responsibility that requires their visibility and support,</strong> not a technology project that can be delegated to IT.</p>
+      </div>
+
+      <div class="fg-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- 15: RESOURCES -->
+      <div class="fg-sh" style="background:rgba(255,255,255,.08);"><div class="fg-sh-bar" style="background:var(--yellow);"></div><div class="fg-sh-n">15</div><h2>Resources and <em>Ecosystem</em></h2></div>
+      <div class="fg-sub">This guide exists within a broader ecosystem of organizations doing critical work on digital safety and data privacy for reproductive health.</div>
+
+      <div class="fg-resource"><div class="fg-resource-n">Digital Defense Fund</div><p>Training abortion access organizations on digital security since 2017. <a href="https://digitaldefensefund.org" target="_blank">digitaldefensefund.org</a></p></div>
+      <div class="fg-resource"><div class="fg-resource-n">Electronic Frontier Foundation</div><p>Surveillance Self-Defense guide covering app permissions, encrypted messaging, and AI chatbot surveillance. <a href="https://www.eff.org/issues/privacy" target="_blank">eff.org/issues/privacy</a></p></div>
+      <div class="fg-resource"><div class="fg-resource-n">Center for Reproductive Rights</div><p>Legal analysis and policy advocacy on data privacy in reproductive health. <a href="https://reproductiverights.org" target="_blank">reproductiverights.org</a></p></div>
+      <div class="fg-resource"><div class="fg-resource-n">The Body Is the Interface</div><p>A free Substack on AI and reproductive health with sourced analysis for SRH leaders. <a href="https://lyndsaysanborn.substack.com" target="_blank">lyndsaysanborn.substack.com</a></p></div>
+
+      <div class="fg-callout-blue" style="margin-top:24px;">
+        <p style="font-family:var(--font-display);font-weight:900;font-size:15px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;">About This Guide</p>
+        <p>As of 2026, there is no AI governance resource written specifically for the reproductive health movement. This guide exists to fill that gap.</p>
+        <p style="margin-top:8px;">It was written by <strong>Lyndsay Sanborn</strong>, who spent 25 years inside the reproductive health movement before becoming an AI strategist. That order matters.</p>
+        <p style="margin-top:8px;">For questions, collaboration, or organizational support: <strong>lyndsay@frameandforge.com</strong></p>
+        <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.3);">Version 1.0 &bull; April 2026 &bull; Free to share with attribution. &bull; This guide does not constitute legal advice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="fg-cta">
+    <div class="container">
+      <h2>Download the <span style="color:var(--yellow);">PDF Version</span></h2>
+      <p>Get the printable field guide with all three tools ready for your next leadership meeting.</p>
+      <div class="fg-download-box">
+        <h3>Get the <em>Field Guide</em></h3>
+        <p>Enter your email to receive the PDF. Free. No spam. Unsubscribe anytime.</p>
+        <!-- MAILERLITE FORM EMBED -->
+        <div class="ml-embedded" data-form="rusX6z"></div>
+      </div>
+      <div style="margin-top:24px;">
+        <button class="btn btn-orange" onclick="showPage('contact')">Get in Touch &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-fieldguide -->
+
+
+<!-- ============================================
      FOOTER (shown on all pages)
 ============================================ -->
 <footer>
@@ -4454,6 +4996,7 @@
         <h4>Insights</h4>
         <a onclick="showPage('insights')">All Articles</a>
         <a onclick="showPage('audit')">AI Digital Check-Up</a>
+        <a onclick="showPage('fieldguide')">AI Governance Field Guide</a>
         <a href="https://shr-vendor-screener.vercel.app" target="_blank">Vendor Accountability Check ↗</a>
         <a onclick="showPage('substack')" style="color:var(--yellow)">The Body Is the Interface ↗</a>
         <a href="https://lyndsaysanborn.substack.com" target="_blank">Subscribe Free</a>
