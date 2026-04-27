@@ -2623,6 +2623,7 @@
         <div class="nav-dropdown-menu">
           <a href="#" onclick="showPage('audit')">AI Digital Check-Up</a>
           <a href="#" onclick="showPage('fieldguide')">AI Governance Field Guide</a>
+          <a href="#" onclick="showPage('staff-guidance')">AI Tool Use Guidance for Clinical Staff</a>
           <a href="https://shr-vendor-screener.vercel.app" target="_blank">Vendor Accountability Check ↗</a>
         </div>
       </li>
@@ -5015,6 +5016,165 @@
 </div><!-- /page-fieldguide -->
 
 
+<!-- ============================================================
+     PAGE: AI TOOL USE GUIDANCE FOR CLINICAL STAFF
+============================================================ -->
+<div class="page" id="page-staff-guidance">
+
+  <style>
+    .sg-hero { background:var(--royal); padding:100px 0 80px; position:relative; overflow:hidden; }
+    .sg-hero::before { content:''; position:absolute; top:-100px; right:-100px; width:400px; height:400px; background:var(--cyan); border-radius:50%; opacity:.06; }
+    .sg-hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:5px;
+      background: linear-gradient(to right, var(--yellow) 0 25%, var(--orange) 25% 50%, var(--pink) 50% 75%, var(--cyan) 75% 100%); }
+    .sg-hero h1 { font-family:var(--font-display); font-weight:900; font-style:italic; font-size:clamp(36px,5vw,56px); text-transform:uppercase; color:var(--white); line-height:1.0; margin-bottom:14px; }
+    .sg-hero h1 em { color:var(--pink); font-style:normal; }
+    .sg-hero-sub { font-size:19px; color:rgba(255,255,255,.7); max-width:680px; line-height:1.6; }
+    .sg-hero-tags { display:flex; gap:8px; margin-top:24px; flex-wrap:wrap; }
+
+    .sg-section { background:#faf8f5; padding:72px 0; }
+    .sg-section-alt { background:#f0ede8; padding:72px 0; }
+
+    .sg-grid { display:grid; grid-template-columns: 1.1fr 1fr; gap:48px; align-items:start; }
+    @media (max-width: 880px) { .sg-grid { grid-template-columns: 1fr; gap:32px; } }
+
+    .sg-lead { font-size:18px; color:#1e2a3a; line-height:1.6; margin-bottom:18px; }
+    .sg-text { font-size:16px; color:#3d4a5c; line-height:1.7; margin-bottom:14px; }
+    .sg-text strong { color:#0f1420; }
+
+    .sg-list { list-style:none; padding:0; margin:18px 0 0; }
+    .sg-list li { position:relative; padding-left:22px; margin-bottom:10px; font-size:15px; color:#3d4a5c; line-height:1.55; }
+    .sg-list li::before { content:''; position:absolute; left:0; top:8px; width:8px; height:8px; border-radius:50%; background:var(--cyan); }
+
+    .sg-download-card { background:var(--royal); border-radius:8px; padding:32px 28px; box-shadow:0 12px 40px rgba(0,0,0,.18); position:sticky; top:24px; }
+    .sg-download-card .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--cyan); margin-bottom:10px; }
+    .sg-download-card h3 { font-family:var(--font-display); font-weight:900; font-style:italic; text-transform:uppercase; color:var(--white); font-size:24px; line-height:1.05; margin-bottom:10px; }
+    .sg-download-card h3 em { color:var(--yellow); font-style:normal; }
+    .sg-download-card p { color:rgba(255,255,255,.65); font-size:14px; line-height:1.55; margin-bottom:20px; }
+    .sg-download-card .btn-download { display:inline-flex; align-items:center; gap:10px; background:var(--orange); color:var(--white); font-family:var(--font-display); font-weight:900; text-transform:uppercase; font-size:14px; letter-spacing:.5px; padding:14px 22px; border-radius:4px; text-decoration:none; transition:transform .15s ease, background .15s ease; }
+    .sg-download-card .btn-download:hover { background:var(--pink); transform:translateY(-1px); }
+    .sg-download-card .meta { font-family:var(--font-mono); font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:18px; }
+    .sg-download-card .meta span { color:var(--cyan); }
+
+    .sg-mini-divider { display:flex; height:3px; margin:28px 0; border-radius:2px; overflow:hidden; }
+    .sg-mini-divider span:nth-child(1) { flex:4; background:var(--royal); }
+    .sg-mini-divider span:nth-child(2) { flex:2; background:var(--orange); }
+    .sg-mini-divider span:nth-child(3) { flex:1; background:var(--pink); }
+    .sg-mini-divider span:nth-child(4) { flex:.6; background:var(--yellow); }
+
+    .sg-h2 { font-family:var(--font-display); font-weight:900; font-style:italic; text-transform:uppercase; font-size:clamp(24px,3vw,32px); color:var(--royal); line-height:1.1; margin-bottom:14px; }
+    .sg-h2 em { color:var(--orange); font-style:normal; }
+    .sg-eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+
+    .sg-callout { background:#fff; border-left:4px solid var(--pink); padding:20px 24px; margin:24px 0; border-radius:0 6px 6px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+    .sg-callout-h { font-family:var(--font-display); font-weight:900; font-size:13px; text-transform:uppercase; color:var(--pink); letter-spacing:.4px; margin-bottom:6px; }
+    .sg-callout p { font-size:15px; color:#3d4a5c; line-height:1.6; margin:0; }
+    .sg-callout strong { color:#0f1420; }
+
+    .sg-cta { background:var(--royal); padding:72px 0; text-align:center; position:relative; }
+    .sg-cta::before { content:''; position:absolute; top:0; left:0; right:0; height:5px;
+      background: linear-gradient(to right, var(--yellow) 0 25%, var(--orange) 25% 50%, var(--pink) 50% 75%, var(--cyan) 75% 100%); }
+    .sg-cta h2 { font-family:var(--font-display); font-weight:900; font-style:italic; font-size:32px; text-transform:uppercase; color:var(--white); margin-bottom:14px; }
+    .sg-cta h2 em { color:var(--yellow); font-style:normal; }
+    .sg-cta p { color:rgba(255,255,255,.6); font-size:16px; max-width:600px; margin:0 auto 24px; line-height:1.6; }
+  </style>
+
+  <!-- HERO -->
+  <section class="sg-hero">
+    <div class="container">
+      <div class="label" style="margin-bottom:24px;">Free Movement Resource</div>
+      <h1>AI Tool Use Guidance for <em>Clinical Staff</em></h1>
+      <p class="sg-hero-sub">A starting template for SRH clinics. Adapt the bracketed sections to your organization and review with your clinical leadership before distributing.</p>
+      <div class="sg-hero-tags">
+        <span class="fg-tag fg-tag-o">SRH Clinics</span>
+        <span class="fg-tag fg-tag-p">Staff-Facing</span>
+        <span class="fg-tag fg-tag-y">Free to Share</span>
+      </div>
+      <p style="color:rgba(255,255,255,.4);font-size:13px;margin-top:20px;">By Lyndsay Sanborn, MHPA &middot; Version 1.0 &middot; April 2026</p>
+    </div>
+  </section>
+
+  <!-- INTRO + DOWNLOAD -->
+  <section class="sg-section">
+    <div class="container">
+      <div class="sg-grid">
+        <div>
+          <div class="sg-eyebrow">What this is</div>
+          <h2 class="sg-h2">A one-page template for <em>clinical leadership</em>.</h2>
+          <p class="sg-lead">Free AI tools built for clinicians &mdash; ChatGPT for Clinicians, Doximity GPT, OpenEvidence &mdash; are now widely available to anyone with an NPI number. Many staff are already using them. This guidance is not about stopping them. It is about making sure the way these tools get used protects patients and the care they receive.</p>
+
+          <div class="sg-callout">
+            <div class="sg-callout-h">The One Thing to Remember</div>
+            <p><strong>HIPAA-compliant does not mean private.</strong> A Business Associate Agreement makes a vendor legally accountable for HIPAA's rules. It does not make patient data disappear &mdash; or unreachable through subpoena.</p>
+          </div>
+
+          <div class="sg-mini-divider"><span></span><span></span><span></span><span></span></div>
+
+          <div class="sg-eyebrow">What's inside</div>
+          <ul class="sg-list">
+            <li><strong>Why this guidance exists</strong> &mdash; framing for staff, not a rulebook</li>
+            <li><strong>What to use AI tools for, and what to hold off on</strong> &mdash; a YES / NOT YET split</li>
+            <li><strong>Forward progress, not blame</strong> &mdash; for staff already using these tools</li>
+            <li><strong>Tools approved at your clinic</strong> &mdash; a fillable matrix</li>
+            <li><strong>How to ask questions</strong> &mdash; making it a live conversation</li>
+          </ul>
+
+          <p class="sg-text" style="margin-top:24px;">The PDF is fully branded and one page. Drop in your clinic name, director contact, and approved-tools list, and it's ready to share.</p>
+        </div>
+
+        <aside>
+          <div class="sg-download-card">
+            <div class="lbl">Download</div>
+            <h3>Get the <em>PDF</em></h3>
+            <p>One-page, print-ready guidance you can adapt for your clinic. Free. No email required.</p>
+            <a class="btn-download" href="resources/AI_Staff_Guidance_FrameForge.pdf" download>
+              Download PDF &rarr;
+            </a>
+            <div class="meta">PDF &middot; <span>~175 KB</span> &middot; 1 page</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO + HOW TO USE -->
+  <section class="sg-section-alt">
+    <div class="container">
+      <div class="sg-grid">
+        <div>
+          <div class="sg-eyebrow">Who it's for</div>
+          <h2 class="sg-h2">Built for <em>SRH clinical leaders</em>.</h2>
+          <p class="sg-text">Designed for clinic directors, medical directors, and compliance leads at independent reproductive health organizations who need to give clinical staff a clear, humane starting point on AI tool use &mdash; without waiting six months for a perfect policy.</p>
+          <p class="sg-text">It assumes staff are already using free clinician AI tools. It assumes you don't have time to write this from scratch. It assumes the conversation needs to start now.</p>
+        </div>
+        <div>
+          <div class="sg-eyebrow">How to use it</div>
+          <h2 class="sg-h2">Adapt, review, <em>distribute</em>.</h2>
+          <ul class="sg-list">
+            <li>Replace the bracketed placeholders with your clinic's name, director contact, and approved-tools list.</li>
+            <li>Review with clinical leadership and (ideally) compliance counsel.</li>
+            <li>Share with staff alongside a short live conversation &mdash; this is a starting point, not a one-way memo.</li>
+            <li>Revisit quarterly as the AI landscape evolves.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="sg-cta">
+    <div class="container">
+      <h2>Download the <em>Staff Guidance</em></h2>
+      <p>One page. Print-ready. Adapt for your clinic and share with your team this week.</p>
+      <a class="btn btn-orange" href="resources/AI_Staff_Guidance_FrameForge.pdf" download style="font-size:14px;padding:14px 28px;">Download PDF &rarr;</a>
+      <div style="margin-top:20px;">
+        <button class="btn" onclick="showPage('contact')" style="background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;padding:12px 22px;">Talk to Lyndsay &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-staff-guidance -->
+
+
 <!-- ============================================
      FOOTER (shown on all pages)
 ============================================ -->
@@ -5048,6 +5208,7 @@
         <a onclick="showPage('insights')">All Articles</a>
         <a onclick="showPage('audit')">AI Digital Check-Up</a>
         <a onclick="showPage('fieldguide')">AI Governance Field Guide</a>
+        <a onclick="showPage('staff-guidance')">AI Tool Use Guidance for Clinical Staff</a>
         <a href="https://shr-vendor-screener.vercel.app" target="_blank">Vendor Accountability Check ↗</a>
         <a onclick="showPage('substack')" style="color:var(--yellow)">The Body Is the Interface ↗</a>
         <a href="https://lyndsaysanborn.substack.com" target="_blank">Subscribe Free</a>
