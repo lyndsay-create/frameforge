@@ -2617,6 +2617,7 @@
       <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
       <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
       <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+      <li><a href="#" onclick="showPage('speaking')" id="nav-speaking">Speaking</a></li>
       <li><a href="#" onclick="showPage('work')" id="nav-work">Portfolio</a></li>
       <li><a href="#" onclick="showPage('insights')" id="nav-insights">Insights</a></li>
       <li class="nav-dropdown"><a href="#" id="nav-audit">Free Resources</a>
@@ -3048,7 +3049,7 @@
           <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(32px,3.5vw,48px);text-transform:uppercase;line-height:1;margin-bottom:24px;">I Speak at the<br><em style="color:var(--yellow);">Intersection.</em></h2>
           <p style="font-size:16px;line-height:1.75;color:rgba(255,255,255,.8);margin-bottom:16px;">Twenty-five years in the SRH movement. Hands-on AI implementation. A rare combination that makes for talks that are technically grounded, movement-rooted, and impossible to find anywhere else on the conference circuit.</p>
           <p style="font-size:16px;line-height:1.75;color:rgba(255,255,255,.8);margin-bottom:32px;">I speak at conferences, affiliate convenings, board retreats, funder briefings, and leadership summits — tailoring every session to the room I'm in.</p>
-          <button class="btn btn-orange" onclick="showPage('services'); setTimeout(()=>document.getElementById('speaking').scrollIntoView({behavior:'smooth'}),100);">Book Me to Speak →</button>
+          <button class="btn btn-orange" onclick="showPage('speaking')">See Speaking →</button>
         </div>
         <div>
           <div class="label sh" style="margin-bottom:20px;color:var(--cyan);">Topics</div>
@@ -3320,11 +3321,15 @@
             <span>Keynotes · Panels · Workshops</span>
           </div>
           <div style="margin-top:20px;font-family:var(--font-mono);font-size:12px;color:var(--yellow);letter-spacing:.06em;">FEES VARY BY FORMAT & ENGAGEMENT — LET'S TALK</div>
+          <div style="margin-top:24px;">
+            <button class="btn btn-orange" onclick="showPage('speaking')" style="display:inline-block;">See Selected Talks &#x2192;</button>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
+
 
 
   <!-- FAQ SECTION -->
@@ -3432,6 +3437,172 @@
   </section>
 
 </div><!-- /page-services -->
+
+
+<!-- ============================================================
+     PAGE: SPEAKING
+============================================================ -->
+<div class="page" id="page-speaking">
+
+  <section class="services-hero">
+    <div class="container">
+      <div class="label">Speaking & Keynotes</div>
+      <h1>I Speak at the<br><em>Intersection.</em></h1>
+      <p style="font-family:var(--font-display);font-weight:700;font-size:clamp(20px,2.5vw,28px);text-transform:uppercase;color:var(--yellow);letter-spacing:.02em;margin-bottom:24px;">Ethical AI. Reproductive Health. Real Communities.</p>
+      <p>Twenty-five years inside the SRH movement. Hands-on AI implementation. A rare combination that makes for talks that are technically grounded, movement-rooted, and impossible to find anywhere else on the conference circuit.</p>
+      <p>Conference stages, affiliate convenings, board retreats, funder briefings, and leadership summits &mdash; I tailor every session to the room I'm in.</p>
+      <div style="margin-top:32px;">
+        <a href="https://calendly.com/lyndsay-frameandforge" target="_blank" class="btn btn-orange" style="display:inline-block;">Book Me to Speak &#x2192;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section style="background:var(--royal);padding:64px 0;">
+    <div class="container">
+      <div class="label sh" style="margin-bottom:16px;">Topics</div>
+      <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(28px,3vw,40px);text-transform:uppercase;line-height:1;margin-bottom:32px;color:var(--white);">What I Speak On.</h2>
+      <div class="sf-includes" style="max-width:780px;">
+        <span>AI Strategy &amp; Governance for SRH Orgs</span>
+        <span>Misinformation &amp; Reproductive Health</span>
+        <span>Ethics &amp; Equity in Health AI</span>
+        <span>AI Leadership for Nonprofit Executives</span>
+        <span>Bias &amp; Ethics in AI for Hiring</span>
+        <span>Keynotes &middot; Panels &middot; Workshops &middot; Convenings</span>
+      </div>
+      <div style="margin-top:24px;font-family:var(--font-mono);font-size:12px;color:var(--yellow);letter-spacing:.06em;">FEES VARY BY FORMAT &amp; ENGAGEMENT &mdash; LET'S TALK</div>
+    </div>
+  </section>
+
+  <!-- SELECTED TALKS — auto-sorted by date on load -->
+  <section style="background:var(--dark);padding:96px 0;border-top:1px solid rgba(255,255,255,.06);">
+    <div class="container">
+      <div class="label sh" style="margin-bottom:16px;">Recent + Upcoming</div>
+      <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(32px,3.5vw,52px);text-transform:uppercase;line-height:1;margin-bottom:24px;">Selected<br><em style="color:var(--yellow);">Talks.</em></h2>
+      <p style="font-size:16px;line-height:1.75;color:rgba(255,255,255,.8);max-width:680px;margin-bottom:64px;">Ethical AI and governance — to executives, to mission-driven teams, and to the SRH movement.</p>
+
+      <!--
+        TALKS POOL — single source of truth.
+        To add a new talk: copy any .talk block below, set data-date="YYYY-MM-DD",
+        update title/host/description. Script auto-routes it into Upcoming or Recent
+        based on today's date and sorts each group.
+      -->
+      <div id="talks-pool" hidden>
+
+        <div class="talk" data-date="2026-06-24" style="display:flex;flex-wrap:wrap;gap:24px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="flex:0 0 140px;font-family:var(--font-mono);font-size:13px;color:var(--yellow);letter-spacing:.06em;padding-top:4px;">JUN 24, 2026</div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Invited Talk &middot; Women in Analytics, Healthcare Data &amp; Analytics Association</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.2;color:var(--white);margin-bottom:12px;">Bias and Ethics in AI: A Reproductive Health Lens</h4>
+            <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;">Invited by the Executive Director of HDAA &mdash; 60-minute session for the Women in Analytics community on bias and ethics in AI as it relates to reproductive health.</p>
+          </div>
+        </div>
+
+        <div class="talk" data-date="2026-05-06" style="display:flex;flex-wrap:wrap;gap:24px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="flex:0 0 140px;font-family:var(--font-mono);font-size:13px;color:var(--yellow);letter-spacing:.06em;padding-top:4px;">MAY 6, 2026</div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Virtual Chat &amp; Learn &middot; Tech Ladies &times; PowerToFly</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.2;color:var(--white);margin-bottom:12px;">AI in Hiring: Leading with Ethics, Intention, and Human Judgment</h4>
+            <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;">Open community session on values-led AI adoption in hiring practices.</p>
+          </div>
+        </div>
+
+        <div class="talk" data-date="2026-04-28" style="display:flex;flex-wrap:wrap;gap:24px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="flex:0 0 140px;font-family:var(--font-mono);font-size:13px;color:var(--yellow);letter-spacing:.06em;padding-top:4px;">APR 28, 2026</div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Closed-Door Convening &middot; Hey Jane &times; Center for Reproductive Rights</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.2;color:var(--white);margin-bottom:12px;">Reproductive Rights and AI</h4>
+            <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;">90-minute virtual convening. Speakers: Rebecca Davis (VP Marketing, Hey Jane), Amanda Ducach (CEO, Ema), Tom Subak (Founder, Re/Imagination Lab), and Lyndsay Sanborn (Founder + Principal Strategist, Frame + Forge).</p>
+          </div>
+        </div>
+
+        <div class="talk" data-date="2026-04-10" style="display:flex;flex-wrap:wrap;gap:24px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="flex:0 0 140px;font-family:var(--font-mono);font-size:13px;color:var(--yellow);letter-spacing:.06em;padding-top:4px;">APR 10, 2026</div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Fireside Chat &middot; Women Applying AI</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.2;color:var(--white);margin-bottom:12px;">Reproductive Health, LLMs, and the Ethics of Excluded Communities</h4>
+            <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;">In conversation with Raela Ripaldi on why AI tools so rarely serve low-income patients, rural clinics, and communities of color.</p>
+            <blockquote style="margin:20px 0 0;padding-left:20px;border-left:3px solid #E91E8C;font-style:italic;font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;">&ldquo;The &lsquo;no money to be made there&rsquo; answer is a cover story. Developers, funders, and product teams keep making the same choice &mdash; to build for white, upper-class users and call it a universal solution. That&rsquo;s a design choice. And it&rsquo;s a continuation of the same systems reproductive health advocates have been fighting for decades.&rdquo;</blockquote>
+          </div>
+        </div>
+
+        <div class="talk" data-date="2026-04-01" style="display:flex;flex-wrap:wrap;gap:24px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="flex:0 0 140px;font-family:var(--font-mono);font-size:13px;color:var(--yellow);letter-spacing:.06em;padding-top:4px;">APR 1, 2026</div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Webinar &middot; Amalgamated Bank</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.2;color:var(--white);margin-bottom:12px;">Intentional AI Leadership: AI Literacy and Governance for CEOs</h4>
+            <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;">Practical session for CEOs and senior leaders &mdash; introducing the AI Inventory, AI Fit Test, and CLEAR Framework for defensible, values-aligned governance.</p>
+          </div>
+        </div>
+
+        <div class="talk" data-date="2026-01-29" style="display:flex;flex-wrap:wrap;gap:24px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="flex:0 0 140px;font-family:var(--font-mono);font-size:13px;color:var(--yellow);letter-spacing:.06em;padding-top:4px;">JAN 29, 2026</div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Expert Insights &middot; Planned Parenthood</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.2;color:var(--white);margin-bottom:12px;">AI as an Executive Enabler in Sexual and Reproductive Health</h4>
+            <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;">Strategic briefing for Planned Parenthood leadership on how AI can serve mission-aligned, defensible decision-making.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Upcoming -->
+      <div id="talks-upcoming" style="margin-bottom:64px;">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--orange);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Upcoming</div>
+        <div class="talk-list"></div>
+      </div>
+
+      <!-- Recent -->
+      <div id="talks-recent">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--orange);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Recent</div>
+        <div class="talk-list"></div>
+      </div>
+
+      <div style="margin-top:48px;">
+        <a href="https://calendly.com/lyndsay-frameandforge" target="_blank" class="btn btn-orange" style="display:inline-block;">Book Me to Speak &#x2192;</a>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var pool = document.getElementById('talks-pool');
+      if (!pool) return;
+      var today = new Date(); today.setHours(0,0,0,0);
+      var parse = function(d){ var p = d.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); };
+      var talks = [].slice.call(pool.querySelectorAll('.talk'));
+      var upcoming = [], recent = [];
+      talks.forEach(function(t){ (parse(t.dataset.date) >= today ? upcoming : recent).push(t); });
+      upcoming.sort(function(a,b){ return parse(a.dataset.date) - parse(b.dataset.date); });
+      recent.sort(function(a,b){ return parse(b.dataset.date) - parse(a.dataset.date); });
+
+      var ul = document.querySelector('#talks-upcoming .talk-list');
+      var rl = document.querySelector('#talks-recent .talk-list');
+      upcoming.forEach(function(t){ ul.appendChild(t); });
+      recent.forEach(function(t){ rl.appendChild(t); });
+      pool.parentNode.removeChild(pool);
+
+      if (!upcoming.length) document.getElementById('talks-upcoming').style.display = 'none';
+      if (!recent.length) document.getElementById('talks-recent').style.display = 'none';
+
+      // Bottom border on the last item of each group (since order is dynamic)
+      [ul, rl].forEach(function(list){
+        var items = list.children;
+        if (items.length) items[items.length - 1].style.borderBottom = '1px solid rgba(255,255,255,.08)';
+      });
+    })();
+    </script>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="background:var(--dark);padding:80px 0;text-align:center;border-top:1px solid rgba(255,255,255,.06);">
+    <div class="container">
+      <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(28px,3vw,42px);text-transform:uppercase;line-height:1.1;margin-bottom:24px;color:var(--white);">Bring This to<br><em style="color:var(--yellow);">Your Room.</em></h2>
+      <p style="font-size:16px;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto 32px;">If you're planning a convening, summit, board retreat, or leadership briefing, let's talk about what would land for your audience.</p>
+      <a href="https://calendly.com/lyndsay-frameandforge" target="_blank" class="btn btn-orange" style="display:inline-block;">Book Me to Speak &#x2192;</a>
+    </div>
+  </section>
+
+</div><!-- /page-speaking -->
 
 
 <!-- ============================================================
