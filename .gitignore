@@ -8,4 +8,6 @@
 !images/**
 !resources/
 !resources/**
+!connect/
+!connect/**
 !og-image.png
