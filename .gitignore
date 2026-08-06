@@ -4,6 +4,7 @@
 # Track site files
 !.gitignore
 !index.html
+!careers.html
 !images/
 !images/**
 !resources/
