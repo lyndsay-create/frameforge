@@ -5991,8 +5991,10 @@ function toggleFaq(item) {
     document.body.style.overflow = '';
   };
 
-  // Trigger after 4 second delay
-  setTimeout(openRiModal, 4000);
+  // Auto-open on page load is disabled. The modal markup, form, and close
+  // handlers below remain intact — re-enable by uncommenting the line below,
+  // or call openRiModal() from a button to open it on demand.
+  // setTimeout(openRiModal, 4000);
 
   // Close handlers
   closeBtn.addEventListener('click', closeRiModal);
