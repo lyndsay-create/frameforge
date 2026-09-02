@@ -56,6 +56,8 @@
     --font-mono:    'Space Mono', monospace;
 
     --nav-h: 72px;
+    --banner-h: 54px;
+    --top-h: calc(var(--nav-h) + var(--banner-h));
     --max-w: 1160px;
     --radius: 4px;
   }
@@ -116,6 +118,31 @@
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255,255,255,.06);
     display: flex; align-items: center;
+  }
+  .site-banner {
+    position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 998;
+    height: var(--banner-h);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--yellow);
+    border-bottom: 2px solid rgba(0,0,0,.18);
+    font-family: var(--font-mono);
+    font-size: 15px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dark);
+    cursor: pointer;
+    padding: 0 16px;
+    text-align: center;
+    transition: background .18s, letter-spacing .18s;
+  }
+  .site-banner:hover { background: #FFE44D; letter-spacing: .13em; }
+  .site-banner .sb-arrow { margin-left: 10px; }
+  @media (max-width: 900px) {
+    :root { --banner-h: 48px; }
+    .site-banner { font-size: 13px; letter-spacing: .07em; }
+  }
+  @media (max-width: 600px) {
+    :root { --banner-h: 44px; }
+    .site-banner { font-size: 11px; letter-spacing: .04em; }
   }
   nav .container {
     display: flex; align-items: center; justify-content: space-between;
@@ -280,7 +307,7 @@
     .nav-links {
       display: none;
       position: fixed;
-      top: var(--nav-h);
+      top: var(--top-h);
       left: 0;
       right: 0;
       bottom: 0;
@@ -311,7 +338,7 @@
   /* ============================================
      PAGES
   ============================================ */
-  .page { display: none; padding-top: var(--nav-h); min-height: 100vh; }
+  .page { display: none; padding-top: var(--top-h); min-height: 100vh; }
   .page.active { display: block; }
 
   /* ============================================
@@ -2640,6 +2667,10 @@
   </div>
 </nav>
 
+<div class="site-banner" role="button" tabindex="0" onclick="openWaitlist()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openWaitlist();}">
+  Booked through 2026 &middot; 2027 waitlist open<span class="sb-arrow">&#x2192;</span>
+</div>
+
 
 <!-- ============================================================
      PAGE: HOME
@@ -4130,7 +4161,10 @@
 
           <!-- CONTACT FORM — Formspree -->
           <div class="label" style="margin-bottom:20px;color:var(--cyan);">Send a Message</div>
+          <div id="waitlist-note" style="display:none;margin-bottom:20px;padding:12px 14px;border-left:2px solid var(--yellow);background:rgba(255,215,0,.07);font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--yellow);line-height:1.6;">You&rsquo;re joining the <strong>2027 waitlist</strong>. Tell me a little about your organization and I&rsquo;ll be in touch as 2027 slots open.</div>
           <form id="contact-form" action="https://formspree.io/f/xzdanknz" method="POST">
+            <input type="hidden" name="_subject" id="cf-subject" value="New Contact Form Submission">
+            <input type="hidden" name="form_type" id="cf-form-type" value="contact-page">
             <div class="form-row">
               <div class="form-group">
                 <label for="cf-name">Name</label>
@@ -5356,6 +5390,8 @@
       <div style="max-width:560px;">
         <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;">Send a Message</div>
         <form id="footer-contact-form" action="https://formspree.io/f/xzdanknz" method="POST">
+          <input type="hidden" name="_subject" value="New Contact Form Submission (Footer)">
+          <input type="hidden" name="form_type" value="footer-contact">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
             <input type="text" name="name" placeholder="Name" required style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:12px 14px;color:var(--white);font-size:14px;font-family:var(--font-body);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'" />
             <input type="email" name="email" placeholder="Email" required style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:12px 14px;color:var(--white);font-size:14px;font-family:var(--font-body);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'" />
@@ -5383,6 +5419,25 @@
      JS — PAGE ROUTING
 ============================================ -->
 <script>
+  // ---- CONTACT FORM SOURCE TAGGING (Formspree) ----
+  // Marks submissions that arrive via the 2027 waitlist banner so they can be
+  // filtered in Formspree by form_type, and resets to the default on any other
+  // route into the contact page.
+  function setContactSource(source) {
+    var isWaitlist = (source === 'waitlist');
+    var subject = document.getElementById('cf-subject');
+    var formType = document.getElementById('cf-form-type');
+    var note = document.getElementById('waitlist-note');
+    if (subject) subject.value = isWaitlist ? '2027 Waitlist Inquiry' : 'New Contact Form Submission';
+    if (formType) formType.value = isWaitlist ? '2027-waitlist' : 'contact-page';
+    if (note) note.style.display = isWaitlist ? 'block' : 'none';
+  }
+
+  window.openWaitlist = function() {
+    showPage('contact');
+    setContactSource('waitlist');
+  };
+
   function showPage(pageId, pushState) {
     // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -5392,6 +5447,8 @@
       target.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    // Reset contact-form source tagging; openWaitlist() re-applies it after this runs
+    if (pageId === 'contact') setContactSource('default');
     // Update nav active state
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     const activeLink = document.getElementById('nav-' + pageId);
