@@ -1072,6 +1072,52 @@
     color: rgba(255,255,255,.85);
     max-width: 600px;
   }
+  .speak-hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .speak-hero-photo {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    object-position: 68% center;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 8px 40px rgba(0,0,0,.3);
+  }
+  .creds-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+  .creds-photo {
+    width: 180px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: block;
+  }
+  .testimonial-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 56px;
+    align-items: center;
+  }
+  .testimonial-inner > * { min-width: 0; }
+  .testi-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 8px 40px rgba(0,0,0,.2);
+  }
   .services-full {
     background: var(--dark);
     padding: 80px 0;
@@ -2031,12 +2077,15 @@
     .testi-card { grid-template-columns: 1fr; gap: 0; }
     .testi-accent { display: none; }
     .values-grid { grid-template-columns: 1fr; }
+    .speak-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .testi-photo { display: none; }
   }
   @media (max-width: 600px) {
     .services-grid, .posts-grid, .creds-grid { grid-template-columns: 1fr; }
     .pipeline-metrics { grid-template-columns: 1.4fr 1fr; }
     .cs-metrics { grid-template-columns: 1.4fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
+    .creds-photo { display: none; }
     .container { padding: 0 20px; }
     .section-pad { padding: 64px 0; }
     .hero-ctas { flex-direction: column; }
@@ -2836,6 +2885,7 @@
         </div>
       </div>
 
+      <div class="testimonial-inner">
       <div class="testi-track-wrap">
         <div class="testi-track" id="testi-track">
 
@@ -2932,6 +2982,8 @@
 
         </div>
       </div>
+      <img src="images/lyndsay-sanborn-portrait-yellow.jpg" alt="Lyndsay Sanborn" class="testi-photo" loading="lazy" />
+      </div>
 
     </div>
   </section>
@@ -2993,7 +3045,7 @@
           <p>Frame + Forge exists because this moment is too important to leave to technologists who don't know this work, or to advocates who've been told technology isn't theirs to understand. Someone has to hold both. That's what I do.</p>
         </div>
         <div class="about-photo">
-          <img src="images/lyndsay-sanborn-founder-principal-strategist-frame-forge.jpg" alt="Lyndsay Sanborn, Founder & Principal Strategist, Frame + Forge" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="images/lyndsay-sanborn-founder-frame-forge-portrait.jpg" alt="Lyndsay Sanborn, Founder & Principal Strategist, Frame + Forge" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" />
           <div class="about-photo-overlay">
             <div class="about-photo-name">Lyndsay Sanborn, MHPA</div>
             <div class="about-photo-title">Founder & Principal Strategist</div>
@@ -3005,8 +3057,13 @@
 
   <section class="about-creds">
     <div class="container">
-      <div class="label sh">Education & Training</div>
-      <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(32px,3.5vw,48px);text-transform:uppercase;line-height:1;margin-top:8px">The Credentials<br>Behind the Work.</h2>
+      <div class="creds-head">
+        <div>
+          <div class="label sh">Education & Training</div>
+          <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(32px,3.5vw,48px);text-transform:uppercase;line-height:1;margin-top:8px">The Credentials<br>Behind the Work.</h2>
+        </div>
+        <img src="images/lyndsay-sanborn-laughing-bw.jpg" alt="Lyndsay Sanborn laughing" class="creds-photo" loading="lazy" />
+      </div>
       <div class="creds-grid">
         <div class="cred-card">
           <div style="background:#fff;border-radius:6px;padding:10px 14px;display:inline-block;margin-bottom:12px;">
@@ -3436,6 +3493,8 @@
 
   <section class="services-hero">
     <div class="container">
+      <div class="speak-hero-grid">
+      <div>
       <div class="label">Speaking & Keynotes</div>
       <h1>I Speak at the<br><em>Intersection.</em></h1>
       <p style="font-family:var(--font-display);font-weight:700;font-size:clamp(20px,2.5vw,28px);text-transform:uppercase;color:var(--yellow);letter-spacing:.02em;margin-bottom:24px;">Ethical AI. Reproductive Health. Real Communities.</p>
@@ -3443,6 +3502,9 @@
       <p>Conference stages, affiliate convenings, board retreats, funder briefings, and leadership summits &mdash; I tailor every session to the room I'm in.</p>
       <div style="margin-top:32px;">
         <a href="https://calendly.com/lyndsay-frameandforge" target="_blank" class="btn btn-orange" style="display:inline-block;">Book Me to Speak &#x2192;</a>
+      </div>
+      </div>
+      <img src="images/lyndsay-sanborn-speaking-aixph-conference.jpg" alt="Lyndsay Sanborn speaking at the AIxPH Artificial Intelligence and Public Health Conference" class="speak-hero-photo" loading="lazy" />
       </div>
     </div>
   </section>
@@ -5371,7 +5433,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-          <img src="images/lyndsay-sanborn.jpg" alt="Lyndsay Sanborn" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--orange);flex-shrink:0;" />
+          <img src="images/lyndsay-sanborn-avatar.jpg" alt="Lyndsay Sanborn" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--orange);flex-shrink:0;" />
           <div class="nav-logo" style="cursor:pointer" onclick="showPage('home')">
             <div class="logo-mark">
               <span></span><span></span><span></span>
