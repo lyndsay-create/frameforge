@@ -2827,6 +2827,7 @@
             <div class="testi-dot" onclick="goToSlide(1)"></div>
             <div class="testi-dot" onclick="goToSlide(2)"></div>
             <div class="testi-dot" onclick="goToSlide(3)"></div>
+            <div class="testi-dot" onclick="goToSlide(4)"></div>
           </div>
           <div class="testi-nav">
             <button onclick="prevSlide()" aria-label="Previous">&#8592;</button>
@@ -2910,6 +2911,20 @@
                   <p>I've known Lyndsay for over a decade, first working with her on state digital transformation projects stemming from the Affordable Care Act. When I saw that she was leading the charge in the emerging field of reproductive health AI, I jumped onboard. I recommend that anyone in the repro movement with an interest in privacy and technology subscribe to her Substack.</p>
                   <p>I can also attest to Lyndsay's excellent facilitation skills. I brought her in as a speaker for critical AI discussions among values-aligned partners, and know that she is an expert at meeting people where they're at.</p>
                   <p>Bottom line: if you hold sensitive data, work with Lyndsay!"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 5: Judiann Smith -->
+          <div class="testi-slide">
+            <div class="testi-card">
+              <div class="testi-accent">"</div>
+              <div class="testi-body">
+                <p class="testi-quote">I love the messages Lyndsay shared and I loved her delivery style. She is such a positive presence when speaking. Lyndsay exudes confidence and intelligence, a caring heart, political savvy, and humor all at the same time! Definitely not something we come across every day.</p>
+                <div class="testi-attr">
+                  <strong>Judiann Smith</strong>
+                  <span class="testi-attr-org">Hanley Center for Health Leadership and Education</span>
                 </div>
               </div>
             </div>
@@ -5614,7 +5629,7 @@
 <script>
 (function() {
   let current = 0;
-  const total = 4;
+  const total = 5;
   let autoTimer;
 
   function updateCarousel() {
@@ -5625,7 +5640,7 @@
       d.classList.toggle('active', i === current);
     });
     // Close any open expand when slide changes
-    ['brit','cat'].forEach(id => {
+    ['brit','cat','liz'].forEach(id => {
       const box = document.getElementById(id + '-expand');
       const btn = document.getElementById(id + '-toggle');
       if (box) box.style.display = 'none';
